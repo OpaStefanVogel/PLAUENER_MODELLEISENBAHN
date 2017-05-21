@@ -1,2 +1,2 @@
 node-red &
-gitk --all &
+#gitk --all &
