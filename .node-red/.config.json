@@ -553,6 +553,23 @@
      "file": "/usr/lib/node_modules/node-red-node-smooth/17-smooth.js"
     }
    }
+  },
+  "node-red-node-daemon": {
+   "name": "node-red-node-daemon",
+   "version": "0.0.14",
+   "local": true,
+   "nodes": {
+    "daemon": {
+     "name": "daemon",
+     "types": [
+      "daemon"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-daemon",
+     "file": "/home/pi/.node-red/node_modules/node-red-node-daemon/daemon.js"
+    }
+   }
   }
  },
  "_credentialSecret": "805b8a086e90e69ac8ef4cbb4487a974d9ebb6e8f6b86b601be3a425a9ff4e3f"
