@@ -172,6 +172,7 @@ module.exports = {
     //    context.global.os
 
     functionGlobalContext: {
+        Kartoffelpreis: "0.00",
         // os:require('os'),
         // octalbonescript:require('octalbonescript'),
         // jfive:require("johnny-five"),
