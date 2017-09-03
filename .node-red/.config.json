@@ -2,7 +2,7 @@
  "nodes": {
   "node-red": {
    "name": "node-red",
-   "version": "0.15.3",
+   "version": "0.17.5",
    "local": false,
    "nodes": {
     "sentiment": {
@@ -339,12 +339,22 @@
      "local": false,
      "module": "node-red",
      "file": "/usr/lib/node_modules/node-red/nodes/core/storage/50-file.js"
+    },
+    "YAML": {
+     "name": "YAML",
+     "types": [
+      "yaml"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red",
+     "file": "/usr/lib/node_modules/node-red/nodes/core/parsers/70-YAML.js"
     }
    }
   },
   "node-red-node-email": {
    "name": "node-red-node-email",
-   "version": "0.1.15",
+   "version": "0.1.24",
    "local": false,
    "nodes": {
     "email": {
@@ -362,7 +372,7 @@
   },
   "node-red-node-feedparser": {
    "name": "node-red-node-feedparser",
-   "version": "0.1.7",
+   "version": "0.1.8",
    "local": false,
    "nodes": {
     "feedparse": {
@@ -379,7 +389,7 @@
   },
   "node-red-node-rbe": {
    "name": "node-red-node-rbe",
-   "version": "0.1.6",
+   "version": "0.1.11",
    "local": false,
    "nodes": {
     "rbe": {
@@ -396,7 +406,7 @@
   },
   "node-red-node-serialport": {
    "name": "node-red-node-serialport",
-   "version": "0.4.1",
+   "version": "0.4.4",
    "local": false,
    "nodes": {
     "serialport": {
@@ -415,7 +425,7 @@
   },
   "node-red-node-twitter": {
    "name": "node-red-node-twitter",
-   "version": "0.1.9",
+   "version": "0.1.11",
    "local": false,
    "nodes": {
     "twitter": {
@@ -434,7 +444,7 @@
   },
   "node-red-contrib-ibm-watson-iot": {
    "name": "node-red-contrib-ibm-watson-iot",
-   "version": "0.2.6",
+   "version": "0.2.8",
    "local": false,
    "nodes": {
     "wiotp": {
@@ -487,7 +497,7 @@
   },
   "node-red-node-pi-sense-hat": {
    "name": "node-red-node-pi-sense-hat",
-   "version": "0.0.11",
+   "version": "0.0.15",
    "local": false,
    "nodes": {
     "sensehat": {
@@ -539,7 +549,7 @@
   },
   "node-red-node-smooth": {
    "name": "node-red-node-smooth",
-   "version": "0.0.9",
+   "version": "0.0.11",
    "local": false,
    "nodes": {
     "smooth": {
