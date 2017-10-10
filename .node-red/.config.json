@@ -389,7 +389,7 @@
   },
   "node-red-node-rbe": {
    "name": "node-red-node-rbe",
-   "version": "0.1.11",
+   "version": "0.1.13",
    "local": false,
    "nodes": {
     "rbe": {
@@ -407,7 +407,7 @@
   "node-red-node-serialport": {
    "name": "node-red-node-serialport",
    "version": "0.4.4",
-   "local": false,
+   "local": true,
    "nodes": {
     "serialport": {
      "name": "serialport",
@@ -417,9 +417,9 @@
       "serial-port"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-serialport",
-     "file": "/usr/lib/node_modules/node-red-node-serialport/25-serial.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-node-serialport/25-serial.js"
     }
    }
   },
@@ -445,7 +445,7 @@
   "node-red-contrib-ibm-watson-iot": {
    "name": "node-red-contrib-ibm-watson-iot",
    "version": "0.2.8",
-   "local": false,
+   "local": true,
    "nodes": {
     "wiotp": {
      "name": "wiotp",
@@ -455,16 +455,16 @@
       "wiotp out"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-contrib-ibm-watson-iot",
-     "file": "/usr/lib/node_modules/node-red-contrib-ibm-watson-iot/application/wiotp.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-contrib-ibm-watson-iot/application/wiotp.js"
     }
    }
   },
   "node-red-contrib-play-audio": {
    "name": "node-red-contrib-play-audio",
    "version": "2.2.2",
-   "local": false,
+   "local": true,
    "nodes": {
     "play-audio": {
      "name": "play-audio",
@@ -472,16 +472,16 @@
       "play audio"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-contrib-play-audio",
-     "file": "/usr/lib/node_modules/node-red-contrib-play-audio/play-audio.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-contrib-play-audio/play-audio.js"
     }
    }
   },
   "node-red-node-ledborg": {
    "name": "node-red-node-ledborg",
    "version": "0.0.17",
-   "local": false,
+   "local": true,
    "nodes": {
     "ledborg": {
      "name": "ledborg",
@@ -489,16 +489,16 @@
       "ledborg"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-ledborg",
-     "file": "/usr/lib/node_modules/node-red-node-ledborg/78-ledborg.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-node-ledborg/78-ledborg.js"
     }
    }
   },
   "node-red-node-pi-sense-hat": {
    "name": "node-red-node-pi-sense-hat",
    "version": "0.0.15",
-   "local": false,
+   "local": true,
    "nodes": {
     "sensehat": {
      "name": "sensehat",
@@ -507,16 +507,16 @@
       "rpi-sensehat out"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-pi-sense-hat",
-     "file": "/usr/lib/node_modules/node-red-node-pi-sense-hat/sensehat.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-node-pi-sense-hat/sensehat.js"
     }
    }
   },
   "node-red-node-ping": {
    "name": "node-red-node-ping",
    "version": "0.0.13",
-   "local": false,
+   "local": true,
    "nodes": {
     "ping": {
      "name": "ping",
@@ -524,16 +524,16 @@
       "ping"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-ping",
-     "file": "/usr/lib/node_modules/node-red-node-ping/88-ping.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-node-ping/88-ping.js"
     }
    }
   },
   "node-red-node-random": {
    "name": "node-red-node-random",
    "version": "0.0.8",
-   "local": false,
+   "local": true,
    "nodes": {
     "random": {
      "name": "random",
@@ -541,16 +541,16 @@
       "random"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-random",
-     "file": "/usr/lib/node_modules/node-red-node-random/random.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-node-random/random.js"
     }
    }
   },
   "node-red-node-smooth": {
    "name": "node-red-node-smooth",
    "version": "0.0.11",
-   "local": false,
+   "local": true,
    "nodes": {
     "smooth": {
      "name": "smooth",
@@ -558,9 +558,9 @@
       "smooth"
      ],
      "enabled": true,
-     "local": false,
+     "local": true,
      "module": "node-red-node-smooth",
-     "file": "/usr/lib/node_modules/node-red-node-smooth/17-smooth.js"
+     "file": "/home/pi/.node-red/node_modules/node-red-node-smooth/17-smooth.js"
     }
    }
   },
