@@ -580,6 +580,23 @@
      "file": "/home/pi/.node-red/node_modules/node-red-node-daemon/daemon.js"
     }
    }
+  },
+  "node-red-contrib-noble": {
+   "name": "node-red-contrib-noble",
+   "version": "0.3.0",
+   "local": true,
+   "nodes": {
+    "noble": {
+     "name": "noble",
+     "types": [
+      "scan ble"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-noble",
+     "file": "/home/pi/.node-red/node_modules/node-red-contrib-noble/noble/node-red-contrib-noble.js"
+    }
+   }
   }
  },
  "_credentialSecret": "805b8a086e90e69ac8ef4cbb4487a974d9ebb6e8f6b86b601be3a425a9ff4e3f"
