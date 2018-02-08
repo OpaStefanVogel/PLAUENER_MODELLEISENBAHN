@@ -31,6 +31,13 @@
         "label": "Flow 3"
     },
     {
+        "id": "3b937630.ec819a",
+        "type": "tab",
+        "label": "Flow 8 - Opafit",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "cbf8dc07.ff5d6",
         "type": "tab",
         "label": "Flow 5"
@@ -1017,5 +1024,83 @@
                 "bbd7f907.d679b8"
             ]
         ]
+    },
+    {
+        "id": "b7659b2.9fa1f68",
+        "type": "file in",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "1831ecb2.75e633"
+            ]
+        ]
+    },
+    {
+        "id": "8844837.9939f8",
+        "type": "comment",
+        "z": "3b937630.ec819a",
+        "name": "File lesen",
+        "info": "",
+        "x": 60,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "87c58689.9cab48",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "20180201",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "bf31d502.31cb68"
+            ]
+        ]
+    },
+    {
+        "id": "bf31d502.31cb68",
+        "type": "template",
+        "z": "3b937630.ec819a",
+        "name": "/home/pi/...Filename.txt",
+        "field": "filename",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "/home/pi/veryfit2/log/dataLog/dataLog_{{payload}}.txt",
+        "output": "str",
+        "x": 410,
+        "y": 60,
+        "wires": [
+            [
+                "b7659b2.9fa1f68",
+                "1831ecb2.75e633"
+            ]
+        ]
+    },
+    {
+        "id": "1831ecb2.75e633",
+        "type": "debug",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 690,
+        "y": 180,
+        "wires": []
     }
 ]
