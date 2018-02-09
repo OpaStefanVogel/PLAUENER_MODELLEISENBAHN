@@ -5,6 +5,13 @@
         "label": "Flow 1"
     },
     {
+        "id": "3b937630.ec819a",
+        "type": "tab",
+        "label": "Flow 8 - Opafit",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "c2b3598e.b89218",
         "type": "tab",
         "label": "Flow 2",
@@ -29,13 +36,6 @@
         "id": "5bedd5a4.2fedac",
         "type": "tab",
         "label": "Flow 3"
-    },
-    {
-        "id": "3b937630.ec819a",
-        "type": "tab",
-        "label": "Flow 8 - Opafit",
-        "disabled": false,
-        "info": ""
     },
     {
         "id": "cbf8dc07.ff5d6",
@@ -1034,11 +1034,12 @@
         "format": "utf8",
         "chunk": false,
         "sendError": false,
-        "x": 590,
+        "x": 650,
         "y": 120,
         "wires": [
             [
-                "1831ecb2.75e633"
+                "1831ecb2.75e633",
+                "71b99532.a3152c"
             ]
         ]
     },
@@ -1082,8 +1083,8 @@
         "syntax": "mustache",
         "template": "/home/pi/veryfit2/log/dataLog/dataLog_{{payload}}.txt",
         "output": "str",
-        "x": 410,
-        "y": 60,
+        "x": 430,
+        "y": 120,
         "wires": [
             [
                 "b7659b2.9fa1f68",
@@ -1098,9 +1099,164 @@
         "name": "",
         "active": true,
         "console": "false",
-        "complete": "false",
-        "x": 690,
+        "complete": "true",
+        "x": 1330,
         "y": 180,
         "wires": []
+    },
+    {
+        "id": "71b99532.a3152c",
+        "type": "function",
+        "z": "3b937630.ec819a",
+        "name": ".split",
+        "func": "var input=msg.payload.split(\"\\n\");\nmsg.payload=input;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 120,
+        "wires": [
+            [
+                "2db36f98.5f96a"
+            ]
+        ]
+    },
+    {
+        "id": "2db36f98.5f96a",
+        "type": "function",
+        "z": "3b937630.ec819a",
+        "name": ".push",
+        "func": "var inh=msg.payload;\nvar ret=[];\nfor (var i=0;i<inh.length;i++) {\n  var ii=inh[i];\n  if (ii.slice(19,24)==\"08 05\") ret.push(ii);\n  }\nmsg.payload=ret;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 990,
+        "y": 120,
+        "wires": [
+            [
+                "5ed7e186.ee63"
+            ]
+        ]
+    },
+    {
+        "id": "5ed7e186.ee63",
+        "type": "function",
+        "z": "3b937630.ec819a",
+        "name": ".push",
+        "func": "var inh=msg.payload;\nvar ret=[];\nret[0]=eval(\"0x\"+inh[1].slice(34,36)+inh[1].slice(31,33));\nfor (var i=2;i<inh.length;i++) {\n  var ii=inh[i];\n  ret.push(eval(\"0x\"+ii.slice(43,45)+ii.slice(40,41)));\n  ret.push(eval(\"0x\"+ii.slice(58,60)+ii.slice(55,56)));\n  ret.push(eval(\"0x\"+ii.slice(73,75)+ii.slice(70,71)));\n  }\nvar sum=0;\nfor (var i=1;i<ret.length;i++) sum=sum+ret[i];\nret.push(sum);\nmsg.payload=ret;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1150,
+        "y": 120,
+        "wires": [
+            [
+                "1831ecb2.75e633",
+                "131cca48.603bb6"
+            ]
+        ]
+    },
+    {
+        "id": "3b6714da.42e90c",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "20180202",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 220,
+        "y": 160,
+        "wires": [
+            [
+                "bf31d502.31cb68"
+            ]
+        ]
+    },
+    {
+        "id": "a2a065f9.84c078",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "20180203",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "bf31d502.31cb68"
+            ]
+        ]
+    },
+    {
+        "id": "23bc4f12.91416",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "20180208",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 220,
+        "y": 280,
+        "wires": [
+            [
+                "bf31d502.31cb68"
+            ]
+        ]
+    },
+    {
+        "id": "474894dc.34599c",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "20180204",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "bf31d502.31cb68"
+            ]
+        ]
+    },
+    {
+        "id": "8b1b70fb.09b4b",
+        "type": "file",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "x": 1530,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "131cca48.603bb6",
+        "type": "function",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "func": "var inh=msg.payload;\nvar code=\"<xml>\\n<Summe>\"+inh[0]+\"</Summe>\\n\";\nmsg.filename=\"/home/pi/Opafit/test.xml\";\nmsg.payload=code+msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1330,
+        "y": 120,
+        "wires": [
+            [
+                "1831ecb2.75e633",
+                "8b1b70fb.09b4b"
+            ]
+        ]
     }
 ]

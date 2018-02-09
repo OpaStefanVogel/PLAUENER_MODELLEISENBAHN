@@ -16,3 +16,11 @@ git commit -a -m "gitk starten"
 git add .bash_history 
 git commit -a -m ".bash_history"
 cat .node-red/.config.json 
+git commit -a -m "Start Flow 8 - Opafit"
+git diff
+git diff head
+git help diff
+git diff HEAD
+git diff --cached HEAD
+git diff HEAD HEAD-1
+git diff HEAD HEAD^
