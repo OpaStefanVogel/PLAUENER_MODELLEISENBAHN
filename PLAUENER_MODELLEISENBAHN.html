@@ -38,8 +38,8 @@ function SprichFR(was) {
 function init() {
   Logfile("init() gestartet");
 
-  websocket_pult_ssh = new WebSocket("ws://Modellbahnpult:1880/ws/ssh");
-  //websocket_pult_ssh = new WebSocket("ws://192.168.2.101:1880/ws/ssh");
+  //websocket_pult_ssh = new WebSocket("ws://Modellbahnpult:1880/ws/ssh");
+  websocket_pult_ssh = new WebSocket("ws://192.168.2.101:1880/ws/ssh");
   //alert(websocket_pult_ssh.readyState);
   websocket_pult_ssh.onopen = function() {
     websocket_pult_ssh.send("date");
@@ -59,8 +59,8 @@ function init() {
   Logfile("PULT Versuch, Websocket /ws/ssh zu starten");
 
 
-  websocket_pult_logfile = new WebSocket("ws://Modellbahnpult:1880/ws/logfile"); 
-  //websocket_pult_logfile = new WebSocket("ws://192.168.2.101:1880/ws/logfile"); 
+  //websocket_pult_logfile = new WebSocket("ws://Modellbahnpult:1880/ws/logfile"); 
+  websocket_pult_logfile = new WebSocket("ws://192.168.2.101:1880/ws/logfile"); 
   websocket_pult_logfile.onopen = function() {
     Logfile("PULT Websocket /ws/logfile CONNECTED");
     }; 
@@ -76,8 +76,8 @@ function init() {
 
 
   //websocket_brett_logfile = new WebSocket("ws://Modellbahnbrett:1880/ws/logfile"); 
-  //websocket_brett_logfile = new WebSocket("ws://192.168.2.103:1880/ws/logfile"); 
-  websocket_brett_logfile = new WebSocket("ws://192.168.1.110:1880/ws/logfile"); 
+  websocket_brett_logfile = new WebSocket("ws://192.168.2.103:1880/ws/logfile"); 
+  //websocket_brett_logfile = new WebSocket("ws://192.168.1.110:1880/ws/logfile"); 
   websocket_brett_logfile.onopen = function() {
     Logfile("BRETT Websocket /ws/logfile CONNECTED");
     }; 
@@ -92,8 +92,8 @@ function init() {
   Logfile("BRETT Versuch, Websocket /ws/logfile zu starten");
 
 
-  //websocket = new WebSocket("ws://192.168.2.103:1880/ws/gpio"); 
-  websocket = new WebSocket("ws://Modellbahnbrett:1880/ws/gpio"); 
+  websocket = new WebSocket("ws://192.168.2.103:1880/ws/gpio"); 
+  //websocket = new WebSocket("ws://Modellbahnbrett:1880/ws/gpio"); 
   websocket.onopen = function() {
     Logfile("BRETT Websocket /ws/gpio CONNECTED");
     }; 
@@ -112,8 +112,8 @@ function init() {
 
 
   //websocket_brett_Fahrplan = new WebSocket("ws://Modellbahnbrett:1880/ws/Fahrplan");
-  //websocket_brett_Fahrplan = new WebSocket("ws://192.168.2.103:1880/ws/Fahrplan"); 
-  websocket_brett_Fahrplan = new WebSocket("ws://192.168.1.110:1880/ws/Fahrplan"); 
+  websocket_brett_Fahrplan = new WebSocket("ws://192.168.2.103:1880/ws/Fahrplan"); 
+  //websocket_brett_Fahrplan = new WebSocket("ws://192.168.1.110:1880/ws/Fahrplan"); 
   websocket_brett_Fahrplan.onopen = function() {
     Logfile("BRETT Websocket /ws/Fahrplan CONNECTED");
     }; 
