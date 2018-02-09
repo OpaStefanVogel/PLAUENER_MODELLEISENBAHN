@@ -1,1 +1,699 @@
-[{"id":"a9742d28.f89ec","type":"tab","label":"Flow 1"},{"id":"f7513250.1a9c6","type":"websocket-listener","z":"","path":"/ws/gpio","wholemsg":"false"},{"id":"2ff4a27f.434c4e","type":"websocket-listener","z":"","path":"/ws/logfile","wholemsg":"false"},{"id":"c9dcd799.2a77f8","type":"websocket-listener","z":"","path":"ws/Fahrplan","wholemsg":"false"},{"id":"980fbd48.5ace1","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":102.39601135253906,"y":33.62699890136719,"wires":[["91dfd15.7849f3","4b9a9afc.426fd4"]]},{"id":"91dfd15.7849f3","type":"debug","z":"a9742d28.f89ec","name":"","active":true,"console":"false","complete":"true","x":259.3675079345703,"y":35.878997802734375,"wires":[]},{"id":"d2e9dbc2.212098","type":"debug","z":"a9742d28.f89ec","name":"","active":true,"console":"false","complete":"true","x":263.1410217285156,"y":146.3289794921875,"wires":[]},{"id":"4b9a9afc.426fd4","type":"websocket out","z":"a9742d28.f89ec","name":"/ws/gpio","server":"f7513250.1a9c6","client":"","x":267.06654357910156,"y":86.89649963378906,"wires":[]},{"id":"b43fa870.3afdc8","type":"delay","z":"a9742d28.f89ec","name":"Tastenentpreller","pauseType":"rate","timeout":"5","timeoutUnits":"seconds","rate":"1","nbRateUnits":"1","rateUnits":"second","randomFirst":"1","randomLast":"5","randomUnits":"seconds","drop":true,"x":107.61299896240234,"y":143.9822416305542,"wires":[["d2e9dbc2.212098","4b9a9afc.426fd4"]]},{"id":"f43efef1.ded38","type":"rpi-gpio in","z":"a9742d28.f89ec","name":"GPIO4 - Pin 7","pin":"7","intype":"up","debounce":"25","read":true,"x":75,"y":225,"wires":[["b43fa870.3afdc8"]]},{"id":"f9bf0056.aa928","type":"rpi-gpio out","z":"a9742d28.f89ec","name":"","pin":"13","set":false,"level":"0","out":"pwm","x":270.5419921875,"y":315.20800018310547,"wires":[]},{"id":"997fb.33027806","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"0","payloadType":"str","repeat":"","crontab":"","once":false,"x":108.36697387695312,"y":314.17799377441406,"wires":[["f9bf0056.aa928","8b000172.4c11d","87969930.83b6a8"]]},{"id":"b518e6a1.5271a8","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"100","payloadType":"str","repeat":"","crontab":"","once":false,"x":112.61248779296875,"y":407.81551361083984,"wires":[["f9bf0056.aa928","8b000172.4c11d","87969930.83b6a8"]]},{"id":"8b000172.4c11d","type":"debug","z":"a9742d28.f89ec","name":"","active":true,"console":"false","complete":"true","x":260.2540283203125,"y":363.83001708984375,"wires":[]},{"id":"a664062d.4f48c8","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"5","payloadType":"str","repeat":"","crontab":"","once":false,"x":107.54550170898438,"y":360.38299560546875,"wires":[["f9bf0056.aa928","8b000172.4c11d","87969930.83b6a8"]]},{"id":"87969930.83b6a8","type":"play audio","z":"a9742d28.f89ec","name":"","voice":"4","x":272.5,"y":421,"wires":[]},{"id":"6768255c.8545cc","type":"websocket in","z":"a9742d28.f89ec","name":"","server":"f7513250.1a9c6","client":"","x":103.5,"y":508,"wires":[["5b5c4b77.8af104","3618493.c3ad3b6","a105353d.945968","ab682480.57c978"]]},{"id":"a105353d.945968","type":"function","z":"a9742d28.f89ec","name":"","func":"var msg1=msg;\nreturn [msg,msg1];","outputs":1,"noerr":0,"x":192.15453338623047,"y":451.6709156036377,"wires":[[]]},{"id":"5b5c4b77.8af104","type":"debug","z":"a9742d28.f89ec","name":"","active":true,"console":"false","complete":"false","x":323.5,"y":508,"wires":[]},{"id":"3618493.c3ad3b6","type":"play audio","z":"a9742d28.f89ec","name":"","voice":"","x":343.5,"y":559,"wires":[]},{"id":"db50d531.9baa48","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"5","payloadType":"str","repeat":"","crontab":"30 17 * * *","once":false,"x":190.59698486328125,"y":261.03297424316406,"wires":[["f9bf0056.aa928"]]},{"id":"5a573073.c9f21","type":"rpi-gpio out","z":"a9742d28.f89ec","name":"","pin":"22","set":true,"level":"0","freq":"","out":"out","x":480,"y":620,"wires":[]},{"id":"c382c84.9974d38","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"0","payloadType":"str","repeat":"","crontab":"","once":false,"x":110,"y":560,"wires":[["5a573073.c9f21"]]},{"id":"c7b0606d.8bd8e","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"1","payloadType":"str","repeat":"","crontab":"","once":false,"x":110,"y":620,"wires":[["5a573073.c9f21"]]},{"id":"ab682480.57c978","type":"function","z":"a9742d28.f89ec","name":"","func":"var M=msg.payload.split(\":\");\nvar M0=M[0]*1;\nvar M1=M[1];\nvar messages=[];\nmessages[M0] = { payload: M1 };\nreturn messages;\n","outputs":"17","noerr":0,"x":270,"y":760,"wires":[["f9bf0056.aa928"],["5a573073.c9f21"],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]],"outputLabels":["Waldlicht","Lok","","","","","","","","","","","","","","",""]},{"id":"6c7ea6c7.e1bf48","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"0:5","payloadType":"str","repeat":"","crontab":"","once":false,"x":90,"y":800,"wires":[["ab682480.57c978"]]},{"id":"50d83b78.ce7dc4","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"0:0","payloadType":"str","repeat":"","crontab":"","once":false,"x":90,"y":840,"wires":[["ab682480.57c978"]]},{"id":"741c5e92.7c3df","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"1:0","payloadType":"str","repeat":"","crontab":"","once":false,"x":90,"y":880,"wires":[["ab682480.57c978"]]},{"id":"780e7b76.706664","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"1:1","payloadType":"str","repeat":"","crontab":"","once":false,"x":90,"y":920,"wires":[["ab682480.57c978"]]},{"id":"7e7207be.76a348","type":"inject","z":"a9742d28.f89ec","name":"Start","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":290,"y":1100,"wires":[["37144c31.425574"]]},{"id":"37144c31.425574","type":"function","z":"a9742d28.f89ec","name":"Fahrplan auslesen","func":"var Fahrplan=global.get(\"Fahrplan\");\nnode.status({text:Fahrplan.length});\nif (Fahrplan.length>0) {\n  var t=Fahrplan.shift();\n  global.set(\"Fahrplan\",Fahrplan);\n  TimerId=setTimeout(function() {\n    var Fahrplan=global.get(\"Fahrplan\");\n    var was=Fahrplan.shift();\n    global.set(\"Fahrplan\",Fahrplan);\n    node.send({payload:was});\n    },t);\n  global.set(\"TimerId\",TimerId);\n  }\nreturn null;\n","outputs":1,"noerr":0,"x":510,"y":1100,"wires":[["ab50ec9f.0293d","102a2270.f58c4e","f9c6c95a.5cef28","ab682480.57c978"]]},{"id":"102a2270.f58c4e","type":"debug","z":"a9742d28.f89ec","name":"","active":true,"console":"false","complete":"false","x":790,"y":1160,"wires":[]},{"id":"ab50ec9f.0293d","type":"websocket out","z":"a9742d28.f89ec","name":"","server":"2ff4a27f.434c4e","client":"","x":800,"y":1100,"wires":[]},{"id":"47d8e2a6.f5e58c","type":"inject","z":"a9742d28.f89ec","name":"Stopp","topic":"","payload":"","payloadType":"date","repeat":"","crontab":"","once":false,"x":290,"y":1140,"wires":[["91007e32.212ac"]]},{"id":"91007e32.212ac","type":"function","z":"a9742d28.f89ec","name":"","func":"TimerId=global.get(\"TimerId\");\nclearTimeout(TimerId);\nreturn msg;","outputs":1,"noerr":0,"x":470,"y":1140,"wires":[[]]},{"id":"f9c6c95a.5cef28","type":"function","z":"a9742d28.f89ec","name":"","func":"\nreturn msg;","outputs":1,"noerr":0,"x":510,"y":1060,"wires":[["37144c31.425574"]]},{"id":"df054b1.2934fb8","type":"comment","z":"a9742d28.f89ec","name":"Test Fahrplan auslesen","info":"","x":100,"y":1100,"wires":[]},{"id":"f213a03c.0b093","type":"inject","z":"a9742d28.f89ec","name":"","topic":"","payload":"Fahrplan=[0,\"1:1\",3000,\"1:0\"];for (var i=0;i<100;i++) Fahrplan.push(2000,\"1:1\",1000,\"0:20\",2000,\"1:0\",1000,\"0:0\");","payloadType":"str","repeat":"","crontab":"","once":false,"x":290,"y":1240,"wires":[["d9b5dd4c.ebf49"]]},{"id":"5e60a2f9.69f31c","type":"function","z":"a9742d28.f89ec","name":"","func":"TimerId=global.get(\"TimerId\");\nclearTimeout(TimerId);\nvar Fahrplan=msg.payload;\nglobal.set(\"Fahrplan\",Fahrplan);\nmsg.payload=Fahrplan;\nreturn msg;","outputs":1,"noerr":0,"x":490,"y":1200,"wires":[["69edce07.ca536","37144c31.425574"]]},{"id":"69edce07.ca536","type":"debug","z":"a9742d28.f89ec","name":"","active":true,"console":"false","complete":"false","x":690,"y":1200,"wires":[]},{"id":"d9b5dd4c.ebf49","type":"function","z":"a9742d28.f89ec","name":"","func":"var Fahrplan=[0,\"1:1\",3000,\"1:0\"];for (var i=0;i<100;i++) Fahrplan.push(2000,\"1:1\",1000,\"0:20\",2000,\"1:0\",1000,\"0:0\");\nmsg.payload=Fahrplan;\nreturn msg;","outputs":1,"noerr":0,"x":430,"y":1240,"wires":[["5e60a2f9.69f31c"]]},{"id":"781fcbfe.f3b504","type":"comment","z":"a9742d28.f89ec","name":"Fahrplan eingeben","info":"","x":90,"y":1200,"wires":[]},{"id":"ffe4f697.c3aac8","type":"websocket in","z":"a9742d28.f89ec","name":"","server":"c9dcd799.2a77f8","client":"","x":90,"y":1160,"wires":[["d0e55d0d.7977c"]]},{"id":"d0e55d0d.7977c","type":"json","z":"a9742d28.f89ec","name":"","pretty":false,"x":320,"y":1200,"wires":[["5e60a2f9.69f31c"]]}]
+[
+    {
+        "id": "a9742d28.f89ec",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "f7513250.1a9c6",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/gpio",
+        "wholemsg": "false"
+    },
+    {
+        "id": "2ff4a27f.434c4e",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/logfile",
+        "wholemsg": "false"
+    },
+    {
+        "id": "c9dcd799.2a77f8",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "ws/Fahrplan",
+        "wholemsg": "false"
+    },
+    {
+        "id": "980fbd48.5ace1",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 102.39601135253906,
+        "y": 33.62699890136719,
+        "wires": [
+            [
+                "91dfd15.7849f3",
+                "4b9a9afc.426fd4"
+            ]
+        ]
+    },
+    {
+        "id": "91dfd15.7849f3",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 259.3675079345703,
+        "y": 35.878997802734375,
+        "wires": []
+    },
+    {
+        "id": "d2e9dbc2.212098",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 263.1410217285156,
+        "y": 146.3289794921875,
+        "wires": []
+    },
+    {
+        "id": "4b9a9afc.426fd4",
+        "type": "websocket out",
+        "z": "a9742d28.f89ec",
+        "name": "/ws/gpio",
+        "server": "f7513250.1a9c6",
+        "client": "",
+        "x": 267.06654357910156,
+        "y": 86.89649963378906,
+        "wires": []
+    },
+    {
+        "id": "b43fa870.3afdc8",
+        "type": "delay",
+        "z": "a9742d28.f89ec",
+        "name": "Tastenentpreller",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 107.61299896240234,
+        "y": 143.9822416305542,
+        "wires": [
+            [
+                "d2e9dbc2.212098",
+                "4b9a9afc.426fd4"
+            ]
+        ]
+    },
+    {
+        "id": "f43efef1.ded38",
+        "type": "rpi-gpio in",
+        "z": "a9742d28.f89ec",
+        "name": "GPIO4 - Pin 7",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 75,
+        "y": 225,
+        "wires": [
+            [
+                "b43fa870.3afdc8"
+            ]
+        ]
+    },
+    {
+        "id": "f9bf0056.aa928",
+        "type": "rpi-gpio out",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "pin": "13",
+        "set": false,
+        "level": "0",
+        "out": "pwm",
+        "x": 270.5419921875,
+        "y": 315.20800018310547,
+        "wires": []
+    },
+    {
+        "id": "997fb.33027806",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 108.36697387695312,
+        "y": 314.17799377441406,
+        "wires": [
+            [
+                "f9bf0056.aa928",
+                "8b000172.4c11d",
+                "87969930.83b6a8"
+            ]
+        ]
+    },
+    {
+        "id": "b518e6a1.5271a8",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "100",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 112.61248779296875,
+        "y": 407.81551361083984,
+        "wires": [
+            [
+                "f9bf0056.aa928",
+                "8b000172.4c11d",
+                "87969930.83b6a8"
+            ]
+        ]
+    },
+    {
+        "id": "8b000172.4c11d",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 260.2540283203125,
+        "y": 363.83001708984375,
+        "wires": []
+    },
+    {
+        "id": "a664062d.4f48c8",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "5",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 107.54550170898438,
+        "y": 360.38299560546875,
+        "wires": [
+            [
+                "f9bf0056.aa928",
+                "8b000172.4c11d",
+                "87969930.83b6a8"
+            ]
+        ]
+    },
+    {
+        "id": "87969930.83b6a8",
+        "type": "play audio",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "voice": "4",
+        "x": 272.5,
+        "y": 421,
+        "wires": []
+    },
+    {
+        "id": "6768255c.8545cc",
+        "type": "websocket in",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "server": "f7513250.1a9c6",
+        "client": "",
+        "x": 103.5,
+        "y": 508,
+        "wires": [
+            [
+                "5b5c4b77.8af104",
+                "3618493.c3ad3b6",
+                "a105353d.945968",
+                "ab682480.57c978"
+            ]
+        ]
+    },
+    {
+        "id": "a105353d.945968",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "var msg1=msg;\nreturn [msg,msg1];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 192.15453338623047,
+        "y": 451.6709156036377,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b5c4b77.8af104",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 323.5,
+        "y": 508,
+        "wires": []
+    },
+    {
+        "id": "3618493.c3ad3b6",
+        "type": "play audio",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "voice": "",
+        "x": 343.5,
+        "y": 559,
+        "wires": []
+    },
+    {
+        "id": "db50d531.9baa48",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "5",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "30 17 * * *",
+        "once": false,
+        "x": 190.59698486328125,
+        "y": 261.03297424316406,
+        "wires": [
+            [
+                "f9bf0056.aa928"
+            ]
+        ]
+    },
+    {
+        "id": "5a573073.c9f21",
+        "type": "rpi-gpio out",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "pin": "22",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 480,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "c382c84.9974d38",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 560,
+        "wires": [
+            [
+                "5a573073.c9f21"
+            ]
+        ]
+    },
+    {
+        "id": "c7b0606d.8bd8e",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 620,
+        "wires": [
+            [
+                "5a573073.c9f21"
+            ]
+        ]
+    },
+    {
+        "id": "ab682480.57c978",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "var M=msg.payload.split(\":\");\nvar M0=M[0]*1;\nvar M1=M[1];\nvar messages=[];\nmessages[M0] = { payload: M1 };\nreturn messages;\n",
+        "outputs": "17",
+        "noerr": 0,
+        "x": 270,
+        "y": 760,
+        "wires": [
+            [
+                "f9bf0056.aa928"
+            ],
+            [
+                "5a573073.c9f21"
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ],
+        "outputLabels": [
+            "Waldlicht",
+            "Lok",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    {
+        "id": "6c7ea6c7.e1bf48",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "0:5",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90,
+        "y": 800,
+        "wires": [
+            [
+                "ab682480.57c978"
+            ]
+        ]
+    },
+    {
+        "id": "50d83b78.ce7dc4",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "0:0",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90,
+        "y": 840,
+        "wires": [
+            [
+                "ab682480.57c978"
+            ]
+        ]
+    },
+    {
+        "id": "741c5e92.7c3df",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "1:0",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90,
+        "y": 880,
+        "wires": [
+            [
+                "ab682480.57c978"
+            ]
+        ]
+    },
+    {
+        "id": "780e7b76.706664",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "1:1",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90,
+        "y": 920,
+        "wires": [
+            [
+                "ab682480.57c978"
+            ]
+        ]
+    },
+    {
+        "id": "7e7207be.76a348",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "Start",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 290,
+        "y": 1100,
+        "wires": [
+            [
+                "37144c31.425574"
+            ]
+        ]
+    },
+    {
+        "id": "37144c31.425574",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "Fahrplan auslesen",
+        "func": "var Fahrplan=global.get(\"Fahrplan\");\nnode.status({text:Fahrplan.length});\nif (Fahrplan.length>0) {\n  var t=Fahrplan.shift();\n  global.set(\"Fahrplan\",Fahrplan);\n  TimerId=setTimeout(function() {\n    var Fahrplan=global.get(\"Fahrplan\");\n    var was=Fahrplan.shift();\n    global.set(\"Fahrplan\",Fahrplan);\n    node.send({payload:was});\n    },t);\n  global.set(\"TimerId\",TimerId);\n  }\nreturn null;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 1100,
+        "wires": [
+            [
+                "ab50ec9f.0293d",
+                "102a2270.f58c4e",
+                "f9c6c95a.5cef28",
+                "ab682480.57c978"
+            ]
+        ]
+    },
+    {
+        "id": "102a2270.f58c4e",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 790,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "ab50ec9f.0293d",
+        "type": "websocket out",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "server": "2ff4a27f.434c4e",
+        "client": "",
+        "x": 800,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "47d8e2a6.f5e58c",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "Stopp",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 290,
+        "y": 1140,
+        "wires": [
+            [
+                "91007e32.212ac"
+            ]
+        ]
+    },
+    {
+        "id": "91007e32.212ac",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "TimerId=global.get(\"TimerId\");\nclearTimeout(TimerId);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f9c6c95a.5cef28",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 1060,
+        "wires": [
+            [
+                "37144c31.425574"
+            ]
+        ]
+    },
+    {
+        "id": "df054b1.2934fb8",
+        "type": "comment",
+        "z": "a9742d28.f89ec",
+        "name": "Test Fahrplan auslesen",
+        "info": "",
+        "x": 100,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "f213a03c.0b093",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "Fahrplan=[0,\"1:1\",3000,\"1:0\"];for (var i=0;i<100;i++) Fahrplan.push(2000,\"1:1\",1000,\"0:20\",2000,\"1:0\",1000,\"0:0\");",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 290,
+        "y": 1240,
+        "wires": [
+            [
+                "d9b5dd4c.ebf49"
+            ]
+        ]
+    },
+    {
+        "id": "5e60a2f9.69f31c",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "TimerId=global.get(\"TimerId\");\nclearTimeout(TimerId);\nvar Fahrplan=msg.payload;\nglobal.set(\"Fahrplan\",Fahrplan);\nmsg.payload=Fahrplan;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 1200,
+        "wires": [
+            [
+                "69edce07.ca536",
+                "37144c31.425574"
+            ]
+        ]
+    },
+    {
+        "id": "69edce07.ca536",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 690,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "d9b5dd4c.ebf49",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "var Fahrplan=[0,\"1:1\",3000,\"1:0\"];for (var i=0;i<100;i++) Fahrplan.push(2000,\"1:1\",1000,\"0:20\",2000,\"1:0\",1000,\"0:0\");\nmsg.payload=Fahrplan;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 1240,
+        "wires": [
+            [
+                "5e60a2f9.69f31c"
+            ]
+        ]
+    },
+    {
+        "id": "781fcbfe.f3b504",
+        "type": "comment",
+        "z": "a9742d28.f89ec",
+        "name": "Fahrplan eingebenm",
+        "info": "",
+        "x": 90,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "ffe4f697.c3aac8",
+        "type": "websocket in",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "server": "c9dcd799.2a77f8",
+        "client": "",
+        "x": 90,
+        "y": 1160,
+        "wires": [
+            [
+                "d0e55d0d.7977c"
+            ]
+        ]
+    },
+    {
+        "id": "d0e55d0d.7977c",
+        "type": "json",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "pretty": false,
+        "x": 320,
+        "y": 1200,
+        "wires": [
+            [
+                "5e60a2f9.69f31c"
+            ]
+        ]
+    }
+]

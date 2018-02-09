@@ -1286,3 +1286,4 @@ cat .node-red/flows_Modellbahnbrett.json
 cat .node-red/flows_Modellbahnpult_cred.json 
 sudo nano /etc/hostname 
 sudo reboot
+screen -r
