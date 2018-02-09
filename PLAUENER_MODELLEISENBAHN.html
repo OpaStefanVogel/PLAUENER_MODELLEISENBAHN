@@ -38,8 +38,8 @@ function SprichFR(was) {
 function init() {
   Logfile("init() gestartet");
 
-  //websocket_pult_ssh = new WebSocket("ws://Modellbahnpult:1880/ws/ssh");
-  websocket_pult_ssh = new WebSocket("ws://192.168.2.101:1880/ws/ssh");
+  websocket_pult_ssh = new WebSocket("ws://Modellbahnpult:1880/ws/ssh");
+  //websocket_pult_ssh = new WebSocket("ws://192.168.2.101:1880/ws/ssh");
   //alert(websocket_pult_ssh.readyState);
   websocket_pult_ssh.onopen = function() {
     websocket_pult_ssh.send("date");
@@ -75,7 +75,25 @@ function init() {
   Logfile("PULT Versuch, Websocket /ws/logfile zu starten");
 
 
-  websocket = new WebSocket("ws://192.168.2.103:1880/ws/gpio"); 
+  //websocket_brett_logfile = new WebSocket("ws://Modellbahnbrett:1880/ws/logfile"); 
+  //websocket_brett_logfile = new WebSocket("ws://192.168.2.103:1880/ws/logfile"); 
+  websocket_brett_logfile = new WebSocket("ws://192.168.1.110:1880/ws/logfile"); 
+  websocket_brett_logfile.onopen = function() {
+    Logfile("BRETT Websocket /ws/logfile CONNECTED");
+    }; 
+  websocket_brett_logfile.onclose = function() {
+    Logfile("BRETT Websocket /ws/logfile DISCONNECTED");
+    }; 
+  websocket_brett_logfile.onmessage = function() {
+    eventnr=eventnr+1;
+    Logfile("BRETT Websocket /ws/logfile event.data="+event.data.trim());
+    }; 
+  websocket_brett_logfile.onerror = function() { Logfile("BRETT onerror="+event.data) };
+  Logfile("BRETT Versuch, Websocket /ws/logfile zu starten");
+
+
+  //websocket = new WebSocket("ws://192.168.2.103:1880/ws/gpio"); 
+  websocket = new WebSocket("ws://Modellbahnbrett:1880/ws/gpio"); 
   websocket.onopen = function() {
     Logfile("BRETT Websocket /ws/gpio CONNECTED");
     }; 
@@ -91,6 +109,24 @@ function init() {
     }; 
   websocket.onerror = function() { Logfile("BRETT onerror="+event.data) };
   Logfile("BRETT Versuch, Websocket /ws/gpio zu starten");
+
+
+  //websocket_brett_Fahrplan = new WebSocket("ws://Modellbahnbrett:1880/ws/Fahrplan");
+  //websocket_brett_Fahrplan = new WebSocket("ws://192.168.2.103:1880/ws/Fahrplan"); 
+  websocket_brett_Fahrplan = new WebSocket("ws://192.168.1.110:1880/ws/Fahrplan"); 
+  websocket_brett_Fahrplan.onopen = function() {
+    Logfile("BRETT Websocket /ws/Fahrplan CONNECTED");
+    }; 
+  websocket_brett_Fahrplan.onclose = function() {
+    Logfile("BRETT Websocket /ws/Fahrplan DISCONNECTED");
+    }; 
+  websocket_brett_Fahrplan.onmessage = function() {
+    eventnr=eventnr+1;
+    Logfile("brett Websocket /ws/Fahrplan event.data="+event.data.trim());
+    }; 
+  websocket_brett_Fahrplan.onerror = function() { Logfile("BRETT onerror="+event.data) };
+  Logfile("BRETT Versuch, Websocket /ws/Fahrplan zu starten");
+
 
   }
 
@@ -131,6 +167,26 @@ function Stoppbutton() {
   websocket.send("1:0");
   }
 
+function neuer_Fahrplan() {
+  var Fahrplan=[0,"1:1",3000,"1:0"];for (var i=0;i<100;i++) {
+    Fahrplan.push(2000,"1:1",1000,"0:20",2000,"1:0",1000,"0:0");
+    }
+  var FT=JSON.stringify(Fahrplan);
+  websocket_brett_Fahrplan.send(FT);
+  //alert(FT);
+  }
+
+function ganz_neuer_Fahrplan() {
+  var Fahrplan=[0,"1:1",3000,"1:0"];for (var i=0;i<100;i++) {
+    Fahrplan.push(1000,"1:80",200,"1:60",200,"1:40",200,"1:20",200,"1:0",
+    1000,"0:20",
+    1000,"1:20",200,"1:40",200,"1:60",200,"1:80",200,"1:100",
+    1000,"0:0");
+    }
+  var FT=JSON.stringify(Fahrplan);
+  websocket_brett_Fahrplan.send(FT);
+  //alert(FT);
+  }
 
   </script>
 <body onload="init()">
@@ -145,6 +201,10 @@ Lok:
 <input id="Auszeit" size="5" value="10"/>
 <button class="Licht_an" onclick='Startbutton()'>Start</button>
 <button class="Licht_aus" onclick='Stoppbutton()'>Stopp</button>
+<button class="Licht_aus" onclick='neuer_Fahrplan()'>neuer Fahrplan</button>
+<button class="Licht_aus" onclick='ganz_neuer_Fahrplan()'>ganz neuer Fahrplan</button>
+<button class="Licht_aus" onclick='websocket_brett_Fahrplan.send("[]")'>Fahrplan aus</button>
+
 </p>
   <svg id="Grafik" width="800" height="420" viewBox="0 0 800 420" style="border:solid 1px black" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" stroke="darkgrey">
     <title>Streichholzgraph</title>
