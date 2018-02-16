@@ -92,7 +92,7 @@ function init() {
   Logfile("BRETT Versuch, Websocket /ws/logfile zu starten");
 
 
-  websocket_brett_gpio. = new WebSocket("ws://192.168.2.103:1880/ws/gpio"); 
+  websocket_brett_gpio = new WebSocket("ws://192.168.2.103:1880/ws/gpio"); 
   //websocket = new WebSocket("ws://Modellbahnbrett:1880/ws/gpio"); 
   websocket_brett_gpio.onopen = function() {
     Logfile("BRETT Websocket /ws/gpio CONNECTED");
@@ -127,7 +127,7 @@ function init() {
   websocket_brett_Fahrplan.onerror = function() { Logfile("BRETT onerror="+event.data) };
   Logfile("BRETT Versuch, Websocket /ws/Fahrplan zu starten");
 
-
+/**/
   }
 
 function Testbuttons() {
@@ -168,8 +168,8 @@ function Stoppbutton() {
   }
 
 function neuer_Fahrplan() {
-  var Fahrplan=[0,"1:1",3000,"1:0"];for (var i=0;i<100;i++) {
-    Fahrplan.push(2000,"1:1",1000,"0:20",2000,"1:0",1000,"0:0");
+  var Fahrplan=[0,"1:0",3000,"1:100"];for (var i=0;i<100;i++) {
+    Fahrplan.push(2000,"1:0",1000,"0:20",2000,"1:100",1000,"0:0");
     }
   var FT=JSON.stringify(Fahrplan);
   websocket_brett_Fahrplan.send(FT);
@@ -177,7 +177,7 @@ function neuer_Fahrplan() {
   }
 
 function ganz_neuer_Fahrplan() {
-  var Fahrplan=[0,"1:1",3000,"1:0"];for (var i=0;i<100;i++) {
+  var Fahrplan=[0,"1:0",3000,"1:100"];for (var i=0;i<100;i++) {
     Fahrplan.push(1000,"1:80",200,"1:60",200,"1:40",200,"1:20",200,"1:0",
     1000,"0:20",
     1000,"1:20",200,"1:40",200,"1:60",200,"1:80",200,"1:100",
