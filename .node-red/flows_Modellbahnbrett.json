@@ -298,10 +298,10 @@
         "z": "a9742d28.f89ec",
         "name": "",
         "pin": "22",
-        "set": true,
+        "set": false,
         "level": "0",
         "freq": "",
-        "out": "out",
+        "out": "pwm",
         "x": 480,
         "y": 620,
         "wires": []

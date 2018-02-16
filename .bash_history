@@ -1287,3 +1287,10 @@ cat .node-red/flows_Modellbahnpult_cred.json
 sudo nano /etc/hostname 
 sudo reboot
 screen -r
+sudo reboot
+gitk --all &
+git stash
+git pull
+git pull origin2
+cat .xsessionrc
+screen -r
