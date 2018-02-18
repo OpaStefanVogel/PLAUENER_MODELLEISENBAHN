@@ -43,6 +43,11 @@
         "label": "Flow 5"
     },
     {
+        "id": "fe8ba81b.f348b8",
+        "type": "tab",
+        "label": "Flow 8"
+    },
+    {
         "id": "8c0ec30e.c4bb9",
         "type": "websocket-client",
         "z": "",
@@ -68,6 +73,13 @@
         "type": "websocket-listener",
         "z": "",
         "path": "/ws/ssh",
+        "wholemsg": "false"
+    },
+    {
+        "id": "788234f6.da3a0c",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/cocalc/gap",
         "wholemsg": "false"
     },
     {
@@ -1256,6 +1268,198 @@
             [
                 "1831ecb2.75e633",
                 "8b1b70fb.09b4b"
+            ]
+        ]
+    },
+    {
+        "id": "c2088936.dbff18",
+        "type": "function",
+        "z": "fe8ba81b.f348b8",
+        "name": "SIGQUIT",
+        "func": "if (msg.payload!=\"QUIT;\") {\n  return msg;\n  } else {\n    delete msg.payload;\n    msg.kill=\"SIGQUIT\";\n    var msg2={};\n    msg2.start=\"\";\n    return [msg, msg2];\n    }",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "a7d9318a.74341",
+                "2ff98c5f.724ff4"
+            ],
+            [
+                "f9dc0e3c.dbe5"
+            ]
+        ]
+    },
+    {
+        "id": "af026824.832e08",
+        "type": "websocket in",
+        "z": "fe8ba81b.f348b8",
+        "name": "",
+        "server": "788234f6.da3a0c",
+        "client": "",
+        "x": 190,
+        "y": 120,
+        "wires": [
+            [
+                "c2088936.dbff18"
+            ]
+        ]
+    },
+    {
+        "id": "a7d9318a.74341",
+        "type": "daemon",
+        "z": "fe8ba81b.f348b8",
+        "command": "ssh",
+        "args": "7ad8f9a4c26c4948a2a7b02339dd883e@ssh.cocalc.com gap Konstruk.gap",
+        "cr": true,
+        "redo": false,
+        "op": "string",
+        "name": "",
+        "x": 730,
+        "y": 120,
+        "wires": [
+            [
+                "3111c26c.8ba94e",
+                "3b8022ae.56c8ae"
+            ],
+            [
+                "3111c26c.8ba94e",
+                "3b8022ae.56c8ae"
+            ],
+            [
+                "3111c26c.8ba94e"
+            ]
+        ]
+    },
+    {
+        "id": "3111c26c.8ba94e",
+        "type": "debug",
+        "z": "fe8ba81b.f348b8",
+        "name": "gap-stdout",
+        "active": true,
+        "console": "true",
+        "complete": "payload",
+        "x": 940,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "400f8792.adff48",
+        "type": "inject",
+        "z": "fe8ba81b.f348b8",
+        "name": "",
+        "topic": "",
+        "payload": "Print(111111111^2);",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "c2088936.dbff18"
+            ]
+        ]
+    },
+    {
+        "id": "3b8022ae.56c8ae",
+        "type": "websocket out",
+        "z": "fe8ba81b.f348b8",
+        "name": "",
+        "server": "788234f6.da3a0c",
+        "client": "",
+        "x": 960,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "9a1820cc.4d355",
+        "type": "inject",
+        "z": "fe8ba81b.f348b8",
+        "name": "",
+        "topic": "",
+        "payload": "QUIT;",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 190,
+        "y": 180,
+        "wires": [
+            [
+                "c2088936.dbff18"
+            ]
+        ]
+    },
+    {
+        "id": "f9dc0e3c.dbe5",
+        "type": "delay",
+        "z": "fe8ba81b.f348b8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "a7d9318a.74341"
+            ]
+        ]
+    },
+    {
+        "id": "2ff98c5f.724ff4",
+        "type": "debug",
+        "z": "fe8ba81b.f348b8",
+        "name": "gap-stdin",
+        "active": true,
+        "console": "true",
+        "complete": "payload",
+        "x": 560,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8ec2ae45.e0ce7",
+        "type": "inject",
+        "z": "fe8ba81b.f348b8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 190,
+        "y": 240,
+        "wires": [
+            [
+                "69d12b3c.56b3d4"
+            ]
+        ]
+    },
+    {
+        "id": "69d12b3c.56b3d4",
+        "type": "function",
+        "z": "fe8ba81b.f348b8",
+        "name": "",
+        "func": "delete msg.payload;\nmsg.kill=\"SIGQUIT\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "a7d9318a.74341"
             ]
         ]
     }

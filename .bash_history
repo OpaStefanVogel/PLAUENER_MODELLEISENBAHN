@@ -24,3 +24,10 @@ git diff HEAD
 git diff --cached HEAD
 git diff HEAD HEAD-1
 git diff HEAD HEAD^
+git diff
+screen -r
+sudo apt-get install bluetooth
+gpio -
+sudo apt-get dist-upgrade
+sudo reboot
+vivaldi &
