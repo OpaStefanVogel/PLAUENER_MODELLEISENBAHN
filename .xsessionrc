@@ -1,2 +1,2 @@
-screen -d -m node-red &
+screen -d -m node-red-start .node-red/flows_Modellbahnbrett.json &
 gitk --all &
