@@ -1294,3 +1294,4 @@ git pull
 git pull origin2
 cat .xsessionrc
 screen -r
+sudo reboot

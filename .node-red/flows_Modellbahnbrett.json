@@ -130,8 +130,8 @@
         "set": false,
         "level": "0",
         "out": "pwm",
-        "x": 270.5419921875,
-        "y": 315.20800018310547,
+        "x": 400,
+        "y": 320,
         "wires": []
     },
     {
@@ -297,13 +297,13 @@
         "type": "rpi-gpio out",
         "z": "a9742d28.f89ec",
         "name": "",
-        "pin": "22",
+        "pin": "32",
         "set": false,
         "level": "0",
         "freq": "",
         "out": "pwm",
-        "x": 480,
-        "y": 620,
+        "x": 640,
+        "y": 600,
         "wires": []
     },
     {
@@ -321,7 +321,7 @@
         "y": 560,
         "wires": [
             [
-                "5a573073.c9f21"
+                "476e563.2d0ffa8"
             ]
         ]
     },
@@ -340,7 +340,7 @@
         "y": 620,
         "wires": [
             [
-                "5a573073.c9f21"
+                "476e563.2d0ffa8"
             ]
         ]
     },
@@ -359,7 +359,7 @@
                 "f9bf0056.aa928"
             ],
             [
-                "5a573073.c9f21"
+                "476e563.2d0ffa8"
             ],
             [],
             [],
@@ -695,5 +695,87 @@
                 "5e60a2f9.69f31c"
             ]
         ]
+    },
+    {
+        "id": "87bc53ad.94b7a",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "nur 0/1",
+        "func": "if (msg.payload!=\"0\") msg.payload=\"1\"; \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 660,
+        "wires": [
+            [
+                "7229b5d3.10e8ac"
+            ]
+        ]
+    },
+    {
+        "id": "7229b5d3.10e8ac",
+        "type": "rpi-gpio out",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "pin": "22",
+        "set": false,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 760,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "476e563.2d0ffa8",
+        "type": "template",
+        "z": "a9742d28.f89ec",
+        "name": "nix",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{payload}}",
+        "output": "str",
+        "x": 430,
+        "y": 600,
+        "wires": [
+            [
+                "5a573073.c9f21",
+                "87bc53ad.94b7a",
+                "181242f.8b5d7bd"
+            ]
+        ]
+    },
+    {
+        "id": "11609db6.88c4e2",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "50",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 680,
+        "wires": [
+            [
+                "476e563.2d0ffa8"
+            ]
+        ]
+    },
+    {
+        "id": "181242f.8b5d7bd",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 570,
+        "y": 720,
+        "wires": []
     }
 ]
