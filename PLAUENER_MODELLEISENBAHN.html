@@ -18,7 +18,12 @@
       #display:none
       }
     </style> 
+<script src="Mosquitto.js" type="text/javascript"></script>
 <script type="application/ecmascript">
+alert(1)
+var msq=new Mosquitto();
+msq.connect("ws:Modellbahnpult:8080");
+alert(msq.connect);
 var eventnr=0;
 function Logfile(Logtext) {
   var Logfile=document.getElementById("Logfile");
@@ -284,7 +289,7 @@ function schiebweiter(evt) {
  </script>
   </svg>
 
-<p><button class="Test" onclick='Testbuttons()'>Testbuttons</button>
+<p><button class="Test" onclick='Testbuttons()'>Testbuttonsss</button>
 <span id="Test" style="display:none">
   <button class="Test" onclick='websocket_pult_ssh.send("sudo shutdown -Ph 0");Logfile("PULT shutdown... gesendet");'>Shutdown Schaltpult</button>
   <button class="Test" onclick='websocket_pult_ssh.send("sudo reboot");Logfile("PULT reboot gesendet");'>Reboot Schaltpult</button>
