@@ -251,9 +251,10 @@ function ganz_neuer_Fahrplan() {
 <p id="Logfile">Logfile:</p>
 
 <script>
-setTimeout(function() {document.getElementById('connect-button').click()},1000);
-setTimeout(function() {document.getElementById('subscribe-button').click()},2000);
-
+alert(1);
+setTimeout(function() {alert(3);document.getElementById('connect-button').click();alert(4)},1000);
+setTimeout(function() {alert(5);document.getElementById('subscribe-button').click();alert(6)},2000);
+alert(2);
 /*
 var Logfile=document.getElementById("Logfile");
 function Logfile_append(text) {
