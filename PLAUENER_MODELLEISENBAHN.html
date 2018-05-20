@@ -230,20 +230,21 @@ function ganz_neuer_Fahrplan() {
 </div>
 
 
-<hr/>
-<p>Eigener Versuch</p>
+<div style="border:double; border-size:80; border-color:green">
+<p>Eigener Versuch einer Verbindung über http://test.mosquitto.org</p>
+<!--
 <input class="but" type="button" value="connect" onclick="document.getElementById('connect-button').click();//mosq2.connect(url)"/>
 <input class="but" type="button" value="subscribe" onclick="document.getElementById('subscribe-button').click();//mosq2.subscribe(top,0);"/>
 <input class="but" type="button" value="publish 'Hallo'" onclick="document.getElementById('payload-text').value='Hallo Stefan';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+-->
 
 <p><input class="but" type="button" value="Licht an" onclick="document.getElementById('payload-text').value='Modellbahnbrett 0:1';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
 <input class="but" type="button" value="aus" onclick="document.getElementById('payload-text').value='Modellbahnbrett 0:0';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
   </p>
 <p><input class="but" type="button" value="Lok an" onclick="document.getElementById('payload-text').value='Modellbahnbrett 1:1';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
 <input class="but" type="button" value="aus" onclick="document.getElementById('payload-text').value='Modellbahnbrett 1:0';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
-<input class="but" type="button" value="Test" onclick="alert(Main.controller.mosq)"/>
   </p>
-
+</div>
 <div id="debug"></div>
 	<script src="http://test.mosquitto.org/tmo.js" type="text/javascript"></script>
 
