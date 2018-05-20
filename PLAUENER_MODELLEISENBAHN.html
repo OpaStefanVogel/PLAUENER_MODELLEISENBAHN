@@ -2,6 +2,8 @@
 <head>
   <title>Plauener Modelleisenbahn</title>
   <meta charset="utf-8"/>
+  <script type='text/javascript' src='http://test.mosquitto.org/mosquitto.js'></script>
+  <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.2.min.js'></script>
   <style type="text/css"> 
     .Licht_an {
       background-color: yellow;
@@ -18,6 +20,7 @@
       #display:none
       }
     </style> 
+
 <script type="application/ecmascript">
 var eventnr=0;
 function Logfile(Logtext) {
@@ -191,6 +194,92 @@ function ganz_neuer_Fahrplan() {
   </script>
 <body onload="init()">
 <p>auf GitHub <a href="http://OpaStefanVogel.github.io/PLAUENER_MODELLEISENBAHN/PLAUENER_MODELLEISENBAHN.html">PLAUENER_MODELLEISENBAHN.html</a> <a href="https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN/blob/master/PLAUENER_MODELLEISENBAHN.html">Quelltext</a> sowie <code>node-red http://192.168.<a href="http://192.168.2.101:1880">2.101</a>:1880, <a href="http://192.168.2.103:1880">2.103</a>, <a href="http://192.168.50.1:1880">50.1</a></code></p>
+<div style="display:none">
+	<h1>MQTT over WebSockets</h1>
+	<p>This is a very early/incomplete/broken example of MQTT over Websockets for
+	test.mosquitto.org. Play around with the buttons below, but don't be
+	surprised if it breaks or isn't very pretty. If you want to develop your own
+	websockets/mqtt app, use the url ws://test.mosquitto.org/mqtt , use
+	subprotocol "mqtt" (preferred) or "mqttv3.1" (legacy) and binary data. Then just treat the websocket as a
+	normal socket connection and read/write MQTT packets.</p>
+	<h2>Usage</h2>
+	<p>Click Connect, then use the Publish and/or Subscribe buttons. You should
+	see text appear below. If you've got another mqtt client available, try
+	subscribe to a topic here then use your other client to send a message to
+	that topic.</p>
+<div id="broker">
+	<h2>Broker</h2>
+	<input class="but" id="connect-button" type="button" value="Connect">
+	<input class="but" id="disconnect-button" type="button" value="Disconnect">
+</div>
+<div id="publish">
+	<h2>Publish</h2>
+	<p>Topic: <input class="txt" id="pub-topic-text" type="text" value="Testheini78x11/psswd_ha72z"></p>
+	<p>Payload: <input class="txt" id="payload-text" type="text" value=""></p>
+	<input class="but" id="publish-button" type="button" value="Publish">
+</div>
+<div id="subscribe">
+	<h2>Subscribe/Unsubscribe</h2>
+	<p>Topic: <input class="txt" id="sub-topic-text" type="text" value="Testheini78x11/psswd_ha72z"></p>
+	<p>
+	<input class="but" id="subscribe-button" type="button" value="Subscribe">
+	<input class="but" id="unsubscribe-button" type="button" value="Unsubscribe">
+	</p>
+</div>
+
+</div>
+
+
+<div style="border:double; border-size:80; border-color:green">
+<p>Eigener Versuch einer Verbindung über http://test.mosquitto.org</p>
+<!--
+<input class="but" type="button" value="connect" onclick="document.getElementById('connect-button').click();//mosq2.connect(url)"/>
+<input class="but" type="button" value="subscribe" onclick="document.getElementById('subscribe-button').click();//mosq2.subscribe(top,0);"/>
+<input class="but" type="button" value="publish 'Hallo'" onclick="document.getElementById('payload-text').value='Hallo Stefan';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+-->
+
+<p><input class="but" type="button" value="Licht an" onclick="document.getElementById('payload-text').value='Modellbahnbrett 0:1';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+<input class="but" type="button" value="aus" onclick="document.getElementById('payload-text').value='Modellbahnbrett 0:0';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+  </p>
+<p><input class="but" type="button" value="Lok an" onclick="document.getElementById('payload-text').value='Modellbahnbrett 1:1';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+<input class="but" type="button" value="aus" onclick="document.getElementById('payload-text').value='Modellbahnbrett 1:0';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+  </p>
+</div>
+<div id="debug"></div>
+	<script src="http://test.mosquitto.org/tmo.js" type="text/javascript"></script>
+
+<p id="Logfile">Logfile:</p>
+
+<script>
+setTimeout(function() {document.getElementById('connect-button').click()},1000);
+setTimeout(function() {document.getElementById('subscribe-button').click()},2000);
+
+/*
+var Logfile=document.getElementById("Logfile");
+function Logfile_append(text) {
+  var p = document.createElement("div");
+  p.innerHTML = text;
+  Logfile.appendChild(p);
+  };
+  
+Logfile_append("Test Logfile");
+
+var mosq2 = new Mosquitto();
+mosq2.onconnect = function(rc){
+  Logfile_append("CONNACK " + rc);
+  };
+mosq2.ondisconnect = function(rc){
+  Logfile_append("Lost connection");
+  };
+mosq2.onmessage = function(topic, payload, qos){
+  Logfile_append("PUBLISH " + topic + " " + payload);
+  }
+
+var url="ws://test.mosquitto.org:8080/mqtt";
+var top="Testheini78x11/psswd_ha72z";
+
+alert(mosq2.connect);*/
+  </script>
 Licht Waldcafe 
 <button class="Licht_an" onclick='websocket_brett_gpio.send("0:20");Logfile("TABLET Licht ein")'>ein</button>
 <button class="Licht_aus" onclick='websocket_brett_gpio.send("0:0");Logfile("TABLET Licht aus")'>aus</button>
@@ -284,7 +373,7 @@ function schiebweiter(evt) {
  </script>
   </svg>
 
-<p><button class="Test" onclick='Testbuttons()'>Testbuttons</button>
+<p><button class="Test" onclick='Testbuttons()'>Testbuttonsss</button>
 <span id="Test" style="display:none">
   <button class="Test" onclick='websocket_pult_ssh.send("sudo shutdown -Ph 0");Logfile("PULT shutdown... gesendet");'>Shutdown Schaltpult</button>
   <button class="Test" onclick='websocket_pult_ssh.send("sudo reboot");Logfile("PULT reboot gesendet");'>Reboot Schaltpult</button>
