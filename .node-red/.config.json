@@ -2,7 +2,7 @@
  "nodes": {
   "node-red": {
    "name": "node-red",
-   "version": "0.17.5",
+   "version": "0.18.4",
    "local": false,
    "nodes": {
     "sentiment": {
@@ -349,6 +349,26 @@
      "local": false,
      "module": "node-red",
      "file": "/usr/lib/node_modules/node-red/nodes/core/storage/50-file.js"
+    },
+    "sort": {
+     "name": "sort",
+     "types": [
+      "sort"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red",
+     "file": "/usr/lib/node_modules/node-red/nodes/core/logic/18-sort.js"
+    },
+    "batch": {
+     "name": "batch",
+     "types": [
+      "batch"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red",
+     "file": "/usr/lib/node_modules/node-red/nodes/core/logic/19-batch.js"
     }
    }
   },
@@ -529,7 +549,7 @@
   },
   "node-red-node-email": {
    "name": "node-red-node-email",
-   "version": "0.1.24",
+   "version": "0.1.29",
    "local": false,
    "nodes": {
     "email": {
@@ -547,7 +567,7 @@
   },
   "node-red-node-feedparser": {
    "name": "node-red-node-feedparser",
-   "version": "0.1.8",
+   "version": "0.1.12",
    "local": false,
    "nodes": {
     "feedparse": {
@@ -564,7 +584,7 @@
   },
   "node-red-node-rbe": {
    "name": "node-red-node-rbe",
-   "version": "0.1.13",
+   "version": "0.2.3",
    "local": false,
    "nodes": {
     "rbe": {
@@ -581,7 +601,7 @@
   },
   "node-red-node-twitter": {
    "name": "node-red-node-twitter",
-   "version": "0.1.11",
+   "version": "0.1.13",
    "local": false,
    "nodes": {
     "twitter": {
@@ -599,5 +619,21 @@
    }
   }
  },
- "_credentialSecret": "461cb57ed860b33125d538d67100c89111e4db0baa0986bc038f707b6228a35c"
+ "_credentialSecret": "461cb57ed860b33125d538d67100c89111e4db0baa0986bc038f707b6228a35c",
+ "users": {
+  "_": {
+   "editor": {
+    "view": {
+     "view-grid-size": 20,
+     "view-node-status": true,
+     "view-show-tips": false,
+     "view-snap-grid": true,
+     "view-show-grid": true
+    }
+   },
+   "menu-menu-item-sidebar": true,
+   "menu-deploymenu-item-node": true,
+   "menu-deploymenu-item-full": false
+  }
+ }
 }
