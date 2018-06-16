@@ -123,6 +123,28 @@
         "willPayload": ""
     },
     {
+        "id": "4fae3ca8.e9b644",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
         "id": "cf651286.ec5fa",
         "type": "comment",
         "z": "70999eba.a8373",
@@ -1749,7 +1771,7 @@
         "wires": [
             [
                 "1333bc11.11da14",
-                "f3a1dca3.44786"
+                "16271518.1a778b"
             ]
         ]
     },
@@ -1763,18 +1785,37 @@
         "console": true,
         "tostatus": false,
         "complete": "true",
-        "x": 440,
-        "y": 680,
+        "x": 400,
+        "y": 640,
         "wires": []
     },
     {
-        "id": "f3a1dca3.44786",
-        "type": "link out",
+        "id": "16271518.1a778b",
+        "type": "function",
+        "z": "3b937630.ec819a",
+        "name": "? help",
+        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"==>Modellbahnpult ?\";\n  return msg;\n  }\nif (m==\"Modellbahnpult ?\") {\n  msg.payload=\"==>Modellbahnpult bietet zur Zeit keine Funktionen über mqtt.\";\n  return msg;\n  }\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 680,
+        "wires": [
+            [
+                "568b09a2.e0f068"
+            ]
+        ]
+    },
+    {
+        "id": "568b09a2.e0f068",
+        "type": "mqtt out",
         "z": "3b937630.ec819a",
         "name": "",
-        "links": [],
-        "x": 340,
-        "y": 760,
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "288a20d9.a18ed",
+        "x": 550,
+        "y": 680,
         "wires": []
     }
 ]
