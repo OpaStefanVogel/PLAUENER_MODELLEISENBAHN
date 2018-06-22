@@ -1295,3 +1295,6 @@ git pull origin2
 cat .xsessionrc
 screen -r
 sudo reboot
+sudo apt-get update
+sudo apt-get upgrade
+screen -r

@@ -26,6 +26,25 @@
         "wholemsg": "false"
     },
     {
+        "id": "8f665f9e.92f27",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
         "id": "980fbd48.5ace1",
         "type": "inject",
         "z": "a9742d28.f89ec",
@@ -776,6 +795,91 @@
         "complete": "false",
         "x": 570,
         "y": 720,
+        "wires": []
+    },
+    {
+        "id": "567412f5.709b7c",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 670,
+        "y": 780,
+        "wires": [
+            [
+                "7229b5d3.10e8ac"
+            ]
+        ]
+    },
+    {
+        "id": "e2abdfbc.e2524",
+        "type": "inject",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 670,
+        "y": 820,
+        "wires": [
+            [
+                "7229b5d3.10e8ac"
+            ]
+        ]
+    },
+    {
+        "id": "4ae71329.970bcc",
+        "type": "mqtt in",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "Testheini78x11/psswd_ha72z",
+        "qos": "2",
+        "broker": "8f665f9e.92f27",
+        "x": 120,
+        "y": 980,
+        "wires": [
+            [
+                "c7730e71.42697"
+            ]
+        ]
+    },
+    {
+        "id": "c7730e71.42697",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "if (msg.payload.slice(0,15)==\"Modellbahnbrett\") {\n  msg.payload=msg.payload.slice(16);\n  return msg;\n  }",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 980,
+        "wires": [
+            [
+                "ab682480.57c978",
+                "bd07e8e4.081998"
+            ]
+        ]
+    },
+    {
+        "id": "bd07e8e4.081998",
+        "type": "debug",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "x": 510,
+        "y": 900,
         "wires": []
     }
 ]
