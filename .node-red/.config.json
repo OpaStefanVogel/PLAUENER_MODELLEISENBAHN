@@ -2,7 +2,7 @@
  "nodes": {
   "node-red": {
    "name": "node-red",
-   "version": "0.18.4",
+   "version": "0.18.7",
    "local": false,
    "nodes": {
     "sentiment": {
@@ -426,7 +426,7 @@
   },
   "node-red-node-serialport": {
    "name": "node-red-node-serialport",
-   "version": "0.6.5",
+   "version": "0.4.4",
    "local": true,
    "nodes": {
     "serialport": {
@@ -445,7 +445,7 @@
   },
   "node-red-node-twitter": {
    "name": "node-red-node-twitter",
-   "version": "0.1.13",
+   "version": "0.1.15",
    "local": false,
    "nodes": {
     "twitter": {
@@ -483,7 +483,7 @@
   },
   "node-red-contrib-play-audio": {
    "name": "node-red-contrib-play-audio",
-   "version": "2.3.1",
+   "version": "2.2.2",
    "local": true,
    "nodes": {
     "play-audio": {
@@ -500,7 +500,7 @@
   },
   "node-red-node-ledborg": {
    "name": "node-red-node-ledborg",
-   "version": "0.0.19",
+   "version": "0.0.17",
    "local": true,
    "nodes": {
     "ledborg": {
@@ -535,7 +535,7 @@
   },
   "node-red-node-ping": {
    "name": "node-red-node-ping",
-   "version": "0.0.15",
+   "version": "0.0.13",
    "local": true,
    "nodes": {
     "ping": {
@@ -552,7 +552,7 @@
   },
   "node-red-node-random": {
    "name": "node-red-node-random",
-   "version": "0.1.0",
+   "version": "0.0.8",
    "local": true,
    "nodes": {
     "random": {
@@ -569,7 +569,7 @@
   },
   "node-red-node-smooth": {
    "name": "node-red-node-smooth",
-   "version": "0.1.0",
+   "version": "0.0.11",
    "local": true,
    "nodes": {
     "smooth": {
@@ -581,6 +581,40 @@
      "local": true,
      "module": "node-red-node-smooth",
      "file": "/home/pi/.node-red/node_modules/node-red-node-smooth/17-smooth.js"
+    }
+   }
+  },
+  "node-red-contrib-noble": {
+   "name": "node-red-contrib-noble",
+   "version": "0.3.0",
+   "local": true,
+   "nodes": {
+    "noble": {
+     "name": "noble",
+     "types": [
+      "scan ble"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-contrib-noble",
+     "file": "/home/pi/.node-red/node_modules/node-red-contrib-noble/noble/node-red-contrib-noble.js"
+    }
+   }
+  },
+  "node-red-node-daemon": {
+   "name": "node-red-node-daemon",
+   "version": "0.0.17",
+   "local": true,
+   "nodes": {
+    "daemon": {
+     "name": "daemon",
+     "types": [
+      "daemon"
+     ],
+     "enabled": true,
+     "local": true,
+     "module": "node-red-node-daemon",
+     "file": "/home/pi/.node-red/node_modules/node-red-node-daemon/daemon.js"
     }
    }
   }

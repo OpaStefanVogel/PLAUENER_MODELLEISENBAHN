@@ -37,12 +37,12 @@
         "compatmode": true,
         "keepalive": "60",
         "cleansession": true,
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
         "birthTopic": "",
         "birthQos": "0",
-        "birthPayload": ""
+        "birthPayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
     },
     {
         "id": "980fbd48.5ace1",
@@ -847,7 +847,8 @@
         "y": 980,
         "wires": [
             [
-                "c7730e71.42697"
+                "c7730e71.42697",
+                "b8cf87d2.101228"
             ]
         ]
     },
@@ -880,6 +881,35 @@
         "complete": "payload",
         "x": 510,
         "y": 900,
+        "wires": []
+    },
+    {
+        "id": "b8cf87d2.101228",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "? help",
+        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"Antwort von <a href='https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN'>Modellbahnbrett</a>:<div style='border:solid; border-color: pink'><code>Modellbahnbrett 1:1</code> <i>Lok ein</i><br/><code>Modellbahnbrett 1:0</code> <i>Lok aus</i></div>\";\n  return msg;\n  }\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 210,
+        "y": 1040,
+        "wires": [
+            [
+                "6ede6f77.69b4b"
+            ]
+        ]
+    },
+    {
+        "id": "6ede6f77.69b4b",
+        "type": "mqtt out",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "broker": "8f665f9e.92f27",
+        "x": 350,
+        "y": 1040,
         "wires": []
     }
 ]
