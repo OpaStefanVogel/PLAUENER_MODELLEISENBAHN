@@ -1,12 +1,12 @@
 if [ `cat /etc/hostname` = "Modellbahnpult" ]; then 
-screen -L -d -m node-red .node-red/flows_Modellbahnpult.json &
+screen -d -m node-red .node-red/flows_Modellbahnpult.json &
 #screen -d -m node-red-log
 pigs pud 4 u m 4 r proc tag 999 wait 255 r 4 xa p1 w 17 p1 dcr p0 jp 999
 pigs procr 0 999999
 gitk --all &
-if [ `hostname -i` = "192.168.50.1" ]; then
-  sudo /usr/local/bin/hostapdstart &
-  fi;
+#if [ `hostname -i` = "192.168.50.1" ]; then
+#  sudo /usr/local/bin/hostapdstart &
+#  fi
 
 elif [ `cat /etc/hostname` = "Modellbahnbrett" ]; then 
 screen -d -m node-red .node-red/flows_Modellbahnbrett.json &
