@@ -248,12 +248,9 @@ function ganz_neuer_Fahrplan() {
 <div id="debug"></div>
 	<script src="http://test.mosquitto.org/tmo.js" type="text/javascript"></script>
 
-<p id="Logfile">Logfile:</p>
-
 <script>
 setTimeout(function() {document.getElementById('connect-button').click()},1000);
 setTimeout(function() {document.getElementById('subscribe-button').click()},2000);
-
 /*
 var Logfile=document.getElementById("Logfile");
 function Logfile_append(text) {
@@ -277,6 +274,9 @@ mosq2.onmessage = function(topic, payload, qos){
 
 var url="ws://test.mosquitto.org:8080/mqtt";
 var top="Testheini78x11/psswd_ha72z";
+
+//mosquitto_pub -h test.mosquitto.org -t Testheini78x11/psswd_ha72z -m "Hello Raspberry Pi"
+//mosquitto_sub -h test.mosquitto.org -t Testheini78x11/psswd_ha72z -v
 
 alert(mosq2.connect);*/
   </script>
@@ -343,6 +343,7 @@ Lok:
 </g>
 
 <script type="application/ecmascript"> 
+alert(8);
 function schiebstart(evt) { 
   var distanz = 0;
   var circle = evt.target;
