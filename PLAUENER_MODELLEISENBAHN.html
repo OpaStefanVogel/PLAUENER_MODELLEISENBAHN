@@ -215,8 +215,8 @@ function ganz_neuer_Fahrplan() {
 <div id="publish">
 	<h2>Publish</h2>
 	<p>Topic: <input class="txt" id="pub-topic-text" type="text" value="Testheini78x11/psswd_ha72z"></p>
-	<p>Payload: <input class="txt" id="payload-text" type="text" value=""></p>
-	<input class="but" id="publish-button" type="button" value="Publish">
+	<p>Payload: <input class="txt" id="payload-text2" type="text" value=""></p>
+	<input class="but" id="publish-button2" type="button" value="Publish">
 </div>
 <div id="subscribe">
 	<h2>Subscribe/Unsubscribe</h2>
@@ -231,13 +231,18 @@ function ganz_neuer_Fahrplan() {
 
 
 <div style="border:double; border-size:80; border-color:green">
-<p>Eigener Versuch einer Verbindung über http://test.mosquitto.org</p>
+<p>Eigener Versuch einer Verbindung über http://test.mosquitto.org
 <!--
 <input class="but" type="button" value="connect" onclick="document.getElementById('connect-button').click();//mosq2.connect(url)"/>
 <input class="but" type="button" value="subscribe" onclick="document.getElementById('subscribe-button').click();//mosq2.subscribe(top,0);"/>
 <input class="but" type="button" value="publish 'Hallo'" onclick="document.getElementById('payload-text').value='Hallo Stefan';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
 -->
-
+	<input class="txt" id="payload-text" type="text" value="" size="30"><input class="but" id="publish-button" type="button" value="Publish">
+  </p>
+<p><input class="but" type="button" value="?" onclick="document.getElementById('payload-text').value='?';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+<input class="but" type="button" value="Radio an" onclick="document.getElementById('payload-text').value='Radio an';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+<input class="but" type="button" value="Radio aus" onclick="document.getElementById('payload-text').value='Radio aus';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
+  </p>
 <p><input class="but" type="button" value="Licht an" onclick="document.getElementById('payload-text').value='Modellbahnbrett 0:1';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
 <input class="but" type="button" value="aus" onclick="document.getElementById('payload-text').value='Modellbahnbrett 0:0';document.getElementById('publish-button').click();//mosq2.publish(top,'Hallo Testheini', 0)"/>
   </p>
@@ -342,8 +347,7 @@ Lok:
 <text id="showy" x="10" y="380" align="central" font-size="100%">0</text>
 </g>
 
-<script type="application/ecmascript"> 
-alert(8);
+<script type="application/ecmascript">
 function schiebstart(evt) { 
   var distanz = 0;
   var circle = evt.target;
