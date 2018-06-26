@@ -1766,12 +1766,13 @@
         "topic": "Testheini78x11/psswd_ha72z",
         "qos": "2",
         "broker": "288a20d9.a18ed",
-        "x": 140,
+        "x": 120,
         "y": 680,
         "wires": [
             [
                 "1333bc11.11da14",
-                "16271518.1a778b"
+                "16271518.1a778b",
+                "7ef52a29.bd16b4"
             ]
         ]
     },
@@ -1794,7 +1795,7 @@
         "type": "function",
         "z": "3b937630.ec819a",
         "name": "? help",
-        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"Antwort von <a href='https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN'>Modellbahnpult</a>:<div style='border:solid; border-color: orange'><i>Modellbahnpult bietet zur Zeit keine Funktionen ueber mqtt.</i></div>\";\n  return msg;\n  }\n",
+        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"Antwort von <a href='https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN'>Modellbahnpult</a>:<div style='border:solid; border-color: orange'><i><code>Chat </code><i>irgendwelcher Text zur Modelleisenbahn</i></div>\";\n  return msg;\n  }\n",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
@@ -1817,5 +1818,118 @@
         "x": 550,
         "y": 680,
         "wires": []
+    },
+    {
+        "id": "28a11145.2b0efe",
+        "type": "mqtt in",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "Testheini78x11/psswd_ha72z",
+        "qos": "2",
+        "broker": "4fae3ca8.e9b644",
+        "x": 300,
+        "y": 760,
+        "wires": [
+            [
+                "88515110.4291c",
+                "7ef52a29.bd16b4"
+            ]
+        ]
+    },
+    {
+        "id": "88515110.4291c",
+        "type": "debug",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "x": 580,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "3fb3dc0.b99ca24",
+        "type": "mqtt out",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "Testheini78x11/psswd_ha72z",
+        "qos": "",
+        "retain": "",
+        "broker": "4fae3ca8.e9b644",
+        "x": 730,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "21c91fbc.dadb3",
+        "type": "file in",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "x": 190,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f69ca3f1.1c3c6",
+        "type": "file",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "filename": "/home/pi/Chat.txt",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "x": 590,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "cd6026cc.1ab818",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "Chat Teste den Chat",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 860,
+        "wires": [
+            [
+                "7ef52a29.bd16b4"
+            ]
+        ]
+    },
+    {
+        "id": "7ef52a29.bd16b4",
+        "type": "function",
+        "z": "3b937630.ec819a",
+        "name": "Chat",
+        "func": "var m=msg.payload;\nif (m.slice(0,4)==\"Chat\") {\n  m=m.slice(5);\n  var Chat=global.get(\"Chat\")||[];\n  Chat.push(m);\n  global.set(\"Chat\",Chat);\n  var msg2={\"payload\":m};\n  msg.payload=\"Antwort vom Chat (die letzten 4):\\n\"+Chat.slice(-4).join(\"\\n\");\n  return [msg2,msg];\n  }\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 350,
+        "y": 860,
+        "wires": [
+            [
+                "f69ca3f1.1c3c6"
+            ],
+            [
+                "88515110.4291c",
+                "3fb3dc0.b99ca24",
+                "568b09a2.e0f068"
+            ]
+        ]
     }
 ]
