@@ -294,7 +294,10 @@ var top="Testheini78x11/psswd_ha72z";
 //mosquitto_sub -h test.mosquitto.org -t Testheini78x11/psswd_ha72z -v
 
 alert(mosq2.connect);*/
+var button78=1;
   </script>
+<button onclick="var div78=document.getElementById('Verbindung_ueber_Websocket'); if (button78==0) { div78.setAttribute('style','display:none'); button78=1; } else { div78.removeAttribute('style'); button78=0}">mehr (lokale Verbindung über Websocket)</button>
+<div id="Verbindung_ueber_Websocket" style="display:none">
 Licht Waldcafe 
 <button class="Licht_an" onclick='websocket_brett_gpio.send("0:20");Logfile("TABLET Licht ein")'>ein</button>
 <button class="Licht_aus" onclick='websocket_brett_gpio.send("0:0");Logfile("TABLET Licht aus")'>aus</button>
@@ -399,9 +402,19 @@ function schiebweiter(evt) {
   </p>
   <a href="http://192.168.2.105:8080">IP_Webcam</a>
 <p><!--iframe src="http://192.168.2.105:8080/browserfs.html" type="text/html" width="640" height="480"/-->
+</div>
   </p>
 
+<script type="application/ecmascript">
+//alert("Was ist das: "+$("#debug"));
+//alert("Wo ist mosq: "+window.Main.controller);
+var div_debug=document.getElementById("debug");
+function debug_10() {
+  if (div_debug.getElementsByTagName("p").length>10) div_debug.removeChild(div_debug.firstChild);
+  }
 
+setInterval(debug_10,1000); 
+  </script>
 
 </body>
   </html>
