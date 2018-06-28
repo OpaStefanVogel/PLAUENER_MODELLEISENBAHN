@@ -727,7 +727,7 @@
         "y": 660,
         "wires": [
             [
-                "7229b5d3.10e8ac"
+                "e97a07ba.46b9d8"
             ]
         ]
     },
@@ -741,7 +741,7 @@
         "level": "0",
         "freq": "",
         "out": "out",
-        "x": 760,
+        "x": 980,
         "y": 660,
         "wires": []
     },
@@ -812,7 +812,7 @@
         "y": 780,
         "wires": [
             [
-                "7229b5d3.10e8ac"
+                "e97a07ba.46b9d8"
             ]
         ]
     },
@@ -831,7 +831,7 @@
         "y": 820,
         "wires": [
             [
-                "7229b5d3.10e8ac"
+                "e97a07ba.46b9d8"
             ]
         ]
     },
@@ -904,12 +904,73 @@
         "type": "mqtt out",
         "z": "a9742d28.f89ec",
         "name": "",
-        "topic": "",
+        "topic": "Testheini78x11/psswd_ha72z",
         "qos": "",
         "retain": "",
         "broker": "8f665f9e.92f27",
-        "x": 350,
-        "y": 1040,
+        "x": 510,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "187e1eaf.ab86f1",
+        "type": "link in",
+        "z": "a9742d28.f89ec",
+        "name": "zu mqtt schicken",
+        "links": [
+            "2a569fe3.97329"
+        ],
+        "x": 280,
+        "y": 1020,
+        "wires": [
+            [
+                "6ede6f77.69b4b"
+            ]
+        ]
+    },
+    {
+        "id": "e97a07ba.46b9d8",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 660,
+        "wires": [
+            [
+                "7229b5d3.10e8ac",
+                "24544eab.aac302"
+            ]
+        ]
+    },
+    {
+        "id": "24544eab.aac302",
+        "type": "function",
+        "z": "a9742d28.f89ec",
+        "name": "zu mqtt schicken ob die Lok fährt",
+        "func": "if (msg.payload===0) {\n  msg.payload=\"(Modellbahnbrett) Die Lok hat angehalten\";\n  } else {\n    msg.payload=\"(Modellbahnbrett) Die Lok ist losgefahren\";\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 600,
+        "wires": [
+            [
+                "2a569fe3.97329"
+            ]
+        ]
+    },
+    {
+        "id": "2a569fe3.97329",
+        "type": "link out",
+        "z": "a9742d28.f89ec",
+        "name": "",
+        "links": [
+            "187e1eaf.ab86f1"
+        ],
+        "x": 1195,
+        "y": 600,
         "wires": []
     }
 ]
