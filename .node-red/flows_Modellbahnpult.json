@@ -1811,11 +1811,11 @@
         "type": "mqtt out",
         "z": "3b937630.ec819a",
         "name": "",
-        "topic": "",
+        "topic": "Testheini78x11/psswd_ha72z",
         "qos": "",
         "retain": "",
         "broker": "288a20d9.a18ed",
-        "x": 550,
+        "x": 630,
         "y": 680,
         "wires": []
     },
@@ -1844,7 +1844,7 @@
         "active": true,
         "tosidebar": true,
         "console": true,
-        "tostatus": false,
+        "tostatus": true,
         "complete": "true",
         "x": 580,
         "y": 760,
@@ -1897,13 +1897,13 @@
         "z": "3b937630.ec819a",
         "name": "",
         "topic": "",
-        "payload": "Chat Teste den Chat",
+        "payload": "Chat Test1",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 170,
+        "once": true,
+        "onceDelay": "5",
+        "x": 150,
         "y": 860,
         "wires": [
             [
@@ -1916,7 +1916,7 @@
         "type": "function",
         "z": "3b937630.ec819a",
         "name": "Chat",
-        "func": "var m=msg.payload;\nif (m.slice(0,4)==\"Chat\") {\n  m=m.slice(5);\n  var Chat=global.get(\"Chat\")||[];\n  Chat.push(m);\n  global.set(\"Chat\",Chat);\n  var msg2={\"payload\":m};\n  msg.payload=\"Antwort vom Chat (die letzten 4):<div style='background-color:grey'>\"+Chat.slice(-4).join(\"<br/>\")+\"</div>\";\n  return [msg2,msg];\n  }\n",
+        "func": "var m=msg.payload;\nif (m.slice(0,4)==\"Chat\") {\n  var Chat=global.get(\"Chat\")||[];\n  var msg2={};\n  m=m.slice(5);\n  if (m.length>0) {\n    Chat.push(m);\n    global.set(\"Chat\",Chat);\n    msg2={\"payload\":m};\n    }\n  msg.payload=\"Antwort vom Chat (die letzten 4):<div style='background-color:grey'>\"+Chat.slice(-4).join(\"<br/>\")+\"</div>\";\n  return [msg2,msg];\n  }\n",
         "outputs": 2,
         "noerr": 0,
         "x": 350,
@@ -1929,6 +1929,86 @@
                 "88515110.4291c",
                 "3fb3dc0.b99ca24",
                 "568b09a2.e0f068"
+            ]
+        ]
+    },
+    {
+        "id": "4cec07a4.84b248",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "Chat ",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 1040,
+        "wires": [
+            [
+                "7ef52a29.bd16b4"
+            ]
+        ]
+    },
+    {
+        "id": "a82dde58.4f4a5",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "Chat Test2",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "6",
+        "x": 150,
+        "y": 900,
+        "wires": [
+            [
+                "7ef52a29.bd16b4"
+            ]
+        ]
+    },
+    {
+        "id": "6895fa50.5695d4",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "Chat Test3",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "7",
+        "x": 150,
+        "y": 940,
+        "wires": [
+            [
+                "7ef52a29.bd16b4"
+            ]
+        ]
+    },
+    {
+        "id": "c8d51613.9f5148",
+        "type": "inject",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "",
+        "payload": "Chat Test4",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "8",
+        "x": 150,
+        "y": 980,
+        "wires": [
+            [
+                "7ef52a29.bd16b4"
             ]
         ]
     }
