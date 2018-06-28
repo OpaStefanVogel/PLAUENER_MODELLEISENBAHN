@@ -251,7 +251,7 @@ function msq_publish(Text) {
 <input class="but" type="button" value="Radio an" onclick="msq_publish('Radio an')"/>
 <input class="but" type="button" value="Radio aus" onclick="msq_publish('Radio aus')"/>
 Chat <input id="Chat-Text" size="30" value=""/>
-<input class="but" type="button" value="abschicken" onclick="msq_publish('Chat '+document.getElementById('Chat-Text').value);"/>
+<input id="Chat_abschicken" class="but" type="button" value="abschicken" onclick="msq_publish('Chat '+document.getElementById('Chat-Text').value);"/>
   </p>
 <p><input class="but" type="button" value="Licht an" onclick="msq_publish('Modellbahnbrett 0:1')"/>
 <input class="but" type="button" value="aus" onclick="msq_publish('Modellbahnbrett 0:0')"/>
@@ -260,12 +260,14 @@ Chat <input id="Chat-Text" size="30" value=""/>
 <input class="but2" type="button" value="aus" onclick="msq_publish('Modellbahnbrett 1:0')"/>
   </p>
 </div>
+<div id="div_Chat"><p>::: Platz für Chat :::</p></div>
 <div id="debug"></div>
 	<script src="http://test.mosquitto.org/tmo.js" type="text/javascript"></script>
 
 <script>
 setTimeout(function() {Logfile("mqtt connect"); document.getElementById('connect-button').click(); Logfile("mqtt connected?")},1000);
 setTimeout(function() {Logfile("mqtt subscribe"); document.getElementById('subscribe-button').click(); Logfile("mqtt subscribed?")},2000);
+setTimeout(function() {Logfile("mqtt Chat"); document.getElementById('Chat_abschicken').click(); Logfile("Chat abgeschickt?")},3000);
 /*
 var Logfile=document.getElementById("Logfile");
 function Logfile_append(text) {
@@ -296,7 +298,7 @@ var top="Testheini78x11/psswd_ha72z";
 alert(mosq2.connect);*/
 var button78=1;
   </script>
-<button onclick="var div78=document.getElementById('Verbindung_ueber_Websocket'); if (button78==0) { div78.setAttribute('style','display:none'); button78=1; } else { div78.removeAttribute('style'); button78=0}">mehr (lokale Verbindung über Websocket)</button>
+<button onclick="var div78=document.getElementById('Verbindung_ueber_Websocket'); if (button78==0) { div78.setAttribute('style','display:none'); button78=1; } else { div78.removeAttribute('style'); button78=0}">mehr (lokale Verbindung über Websocket ws://192.168.2.103:1880):</button>
 <div id="Verbindung_ueber_Websocket" style="display:none">
 Licht Waldcafe 
 <button class="Licht_an" onclick='websocket_brett_gpio.send("0:20");Logfile("TABLET Licht ein")'>ein</button>
@@ -408,9 +410,17 @@ function schiebweiter(evt) {
 <script type="application/ecmascript">
 //alert("Was ist das: "+$("#debug"));
 //alert("Wo ist mosq: "+window.Main.controller);
+var div_Chat=document.getElementById("div_Chat");
 var div_debug=document.getElementById("debug");
 function debug_10() {
-  if (div_debug.getElementsByTagName("p").length>10) div_debug.removeChild(div_debug.firstChild);
+  var pp=div_debug.getElementsByTagName("p");
+  if (pp.length>10) div_debug.removeChild(div_debug.firstChild);
+  for (var i=0;i<pp.length;i++) {
+    if (pp[i].firstChild.nodeValue.slice(0,16)=="Antwort von Chat") {
+      div_Chat.removeChild(div_Chat.firstChild);
+      div_Chat.appendChild(pp[i]);
+      }
+    }
   }
 
 setInterval(debug_10,1000); 
