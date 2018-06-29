@@ -20,7 +20,10 @@
       #display:none
       }
     .but2 {
-      font-size:300%;
+      font-size:400%;
+      #background-color:dodgerblue; 
+      border-radius: 30px;
+      border-size:10px; 
       }
     </style> 
 
@@ -256,8 +259,8 @@ Chat <input id="Chat-Text" size="30" value=""/>
 <p><input class="but" type="button" value="Licht an" onclick="msq_publish('Modellbahnbrett 0:1')"/>
 <input class="but" type="button" value="aus" onclick="msq_publish('Modellbahnbrett 0:0')"/>
   </p>
-<p><button class="but2" onclick="msq_publish('Modellbahnbrett 1:1')">Lok an</button>
-<input class="but2" type="button" value="aus" onclick="msq_publish('Modellbahnbrett 1:0')"/>
+<p><button id="Button_Lok_l" class="but2" onclick="msq_publish('Modellbahnbrett 1:1')">Lok an</button>
+<button id="Button_Lok_h" class="but2" tonclick="msq_publish('Modellbahnbrett 1:0')">aus</button>
   </p>
 </div>
 <div id="div_Chat"><p>::: Platz für Chat :::</p></div>
@@ -416,9 +419,18 @@ function debug_10() {
   var pp=div_debug.getElementsByTagName("p");
   if (pp.length>10) div_debug.removeChild(div_debug.firstChild);
   for (var i=0;i<pp.length;i++) {
-    if (pp[i].firstChild.nodeValue.slice(0,16)=="Antwort von Chat") {
+    var m=pp[i].firstChild.nodeValue;
+    if (m.slice(0,16)=="Antwort von Chat") {
       div_Chat.removeChild(div_Chat.firstChild);
       div_Chat.appendChild(pp[i]);
+      }
+    if (m.slice(0,25)=="(Modellbahnbrett) Lok hat") {
+      document.getElementById("Button_Lok_h").setAttribute("style","background-color:blue");
+      document.getElementById("Button_Lok_l").setAttribute("style","background-color:grey");
+      }
+    if (m.slice(0,25)=="(Modellbahnbrett) Lok ist") {
+      document.getElementById("Button_Lok_h").setAttribute("style","background-color:grey");
+      document.getElementById("Button_Lok_l").setAttribute("style","background-color:blue");
       }
     }
   }
