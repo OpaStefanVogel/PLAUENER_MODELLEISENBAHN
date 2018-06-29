@@ -260,7 +260,7 @@ Chat <input id="Chat-Text" size="30" value=""/>
 <input class="but" type="button" value="aus" onclick="msq_publish('Modellbahnbrett 0:0')"/>
   </p>
 <p><button id="Button_Lok_l" class="but2" onclick="msq_publish('Modellbahnbrett 1:1')">Lok an</button>
-<button id="Button_Lok_h" class="but2" tonclick="msq_publish('Modellbahnbrett 1:0')">aus</button>
+<button id="Button_Lok_h" class="but2" onclick="msq_publish('Modellbahnbrett 1:0')">aus</button>
   </p>
 </div>
 <div id="div_Chat"><p>::: Platz für Chat :::</p></div>
@@ -420,17 +420,17 @@ function debug_10() {
   if (pp.length>10) div_debug.removeChild(div_debug.firstChild);
   for (var i=0;i<pp.length;i++) {
     var m=pp[i].firstChild.nodeValue;
-    if (m.slice(0,16)=="Antwort von Chat") {
+    if (m.indexOf("Antwort vom Chat")>-1) {
       div_Chat.removeChild(div_Chat.firstChild);
       div_Chat.appendChild(pp[i]);
       }
     if (m.slice(0,25)=="(Modellbahnbrett) Lok hat") {
-      document.getElementById("Button_Lok_h").setAttribute("style","background-color:blue");
+      document.getElementById("Button_Lok_h").setAttribute("style","background-color:dodgerblue");
       document.getElementById("Button_Lok_l").setAttribute("style","background-color:grey");
       }
     if (m.slice(0,25)=="(Modellbahnbrett) Lok ist") {
       document.getElementById("Button_Lok_h").setAttribute("style","background-color:grey");
-      document.getElementById("Button_Lok_l").setAttribute("style","background-color:blue");
+      document.getElementById("Button_Lok_l").setAttribute("style","background-color:dodgerblue");
       }
     }
   }
