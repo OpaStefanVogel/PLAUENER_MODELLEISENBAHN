@@ -1795,7 +1795,7 @@
         "type": "function",
         "z": "3b937630.ec819a",
         "name": "? help",
-        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"Antwort von <a href='https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN'>Modellbahnpult</a>:<div style='border:solid; border-color: orange'><i><code>Chat </code><i>irgendwelcher Text zur Modelleisenbahn</i></div>\";\n  return msg;\n  }\n",
+        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"Antwort von <a href='https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN'>Modellbahnpult</a>:<div style='border:solid; border-color: orange'><code>Chat</code> <i>irgendwelcher Text zur Modelleisenbahn</i></div>\";\n  return msg;\n  }\n",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
