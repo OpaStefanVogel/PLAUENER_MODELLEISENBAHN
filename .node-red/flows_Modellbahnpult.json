@@ -55,6 +55,13 @@
         "label": "Flow 8"
     },
     {
+        "id": "e8139bd5.eb4a88",
+        "type": "tab",
+        "label": "Flow 9",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "8c0ec30e.c4bb9",
         "type": "websocket-client",
         "z": "",
@@ -118,6 +125,8 @@
         "birthTopic": "",
         "birthQos": "0",
         "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
         "willTopic": "",
         "willQos": "0",
         "willPayload": ""
@@ -1777,13 +1786,15 @@
         "type": "function",
         "z": "3b937630.ec819a",
         "name": "? help",
-        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"Antwort von <a href='https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN'>Modellbahnpult</a>:<div style='border:solid; border-color: orange'><code>Chat</code> <i>irgendwelcher Text zur Modelleisenbahn</i></div>\";\n  return msg;\n  }\n",
+        "func": "var m=msg.payload;\nif (m==\"?\") {\n  msg.payload=\"Antwort von <a href='https://github.com/OpaStefanVogel/PLAUENER_MODELLEISENBAHN'>Modellbahnpult</a>:<div style='border:solid; border-color: orange'><code></code> <i>momentan keine Eingabefunktionen</i></div>\";\n  return msg;\n  }\n",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
         "y": 680,
         "wires": [
-            []
+            [
+                "bad6b93.ba16948"
+            ]
         ]
     },
     {
@@ -1977,5 +1988,88 @@
                 "7ef52a29.bd16b4"
             ]
         ]
+    },
+    {
+        "id": "9dcd8088.17c28",
+        "type": "function",
+        "z": "e8139bd5.eb4a88",
+        "name": "Zeitpunkt merken",
+        "func": "global.set(\"start_2_min\",Date.now());\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 210,
+        "y": 80,
+        "wires": [
+            [
+                "2516829.727067e"
+            ]
+        ]
+    },
+    {
+        "id": "2516829.727067e",
+        "type": "delay",
+        "z": "e8139bd5.eb4a88",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 420,
+        "y": 80,
+        "wires": [
+            [
+                "56fdac1e.0634e4"
+            ]
+        ]
+    },
+    {
+        "id": "56fdac1e.0634e4",
+        "type": "function",
+        "z": "e8139bd5.eb4a88",
+        "name": "stop 2 min",
+        "func": "var start=global.get(\"start_2_min\");\nvar diff=Date.now()-start;\nnode.status({text:diff});\nmsg.payload=\"Modellbahnpult 1:0\"\nif (diff>2*60*1000) return msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19976268.0f394e",
+        "type": "mqtt in",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "Testheini78x11/psswd_ha72z",
+        "qos": "2",
+        "broker": "288a20d9.a18ed",
+        "x": 192,
+        "y": 674,
+        "wires": [
+            [
+                "1333bc11.11da14",
+                "16271518.1a778b"
+            ]
+        ]
+    },
+    {
+        "id": "bad6b93.ba16948",
+        "type": "mqtt out",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "topic": "Testheini78x11/psswd_ha72z",
+        "qos": "",
+        "retain": "",
+        "broker": "288a20d9.a18ed",
+        "x": 595,
+        "y": 672,
+        "wires": []
     }
 ]

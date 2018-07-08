@@ -7,6 +7,7 @@ gitk --all &
 echo >>test.txt vorif`exec date`
 echo >>test.txt vorif`hostname -i`
 #(sleep 30; if [ `hostname -i` = "192.168.50.1" ]; then sudo /usr/local/bin/hostapdstart; fi) &
+#sudo /usr/local/bin/hostapdstart &
 
 elif [ `cat /etc/hostname` = "Modellbahnbrett" ]; then 
 screen -d -m node-red .node-red/flows_Modellbahnbrett.json &
