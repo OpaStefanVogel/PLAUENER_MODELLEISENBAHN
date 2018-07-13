@@ -424,11 +424,11 @@ function debug_10() {
       div_Chat.removeChild(div_Chat.firstChild);
       div_Chat.appendChild(pp[i]);
       }
-    if (m.slice(0,25)=="(Modellbahnbrett) Lok hat") {
+    if (m.indexOf("(Modellbahnbrett) Die Lok ist losgefahren")>-1) {
       document.getElementById("Button_Lok_h").setAttribute("style","background-color:dodgerblue");
       document.getElementById("Button_Lok_l").setAttribute("style","background-color:grey");
       }
-    if (m.slice(0,25)=="(Modellbahnbrett) Lok ist") {
+    if (m.indexOf("(Modellbahnbrett) Die Lok hat angehalten")>-1) {
       document.getElementById("Button_Lok_h").setAttribute("style","background-color:grey");
       document.getElementById("Button_Lok_l").setAttribute("style","background-color:dodgerblue");
       }
