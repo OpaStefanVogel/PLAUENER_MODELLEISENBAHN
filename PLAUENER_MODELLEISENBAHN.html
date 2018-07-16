@@ -270,7 +270,7 @@ Chat <input id="Chat-Text" size="30" value=""/>
 <script>
 setTimeout(function() {Logfile("mqtt connect"); document.getElementById('connect-button').click(); Logfile("mqtt connected?")},1000);
 setTimeout(function() {Logfile("mqtt subscribe"); document.getElementById('subscribe-button').click(); Logfile("mqtt subscribed?")},2000);
-setTimeout(function() {Logfile("mqtt Chat"); document.getElementById('Chat_abschicken').click(); Logfile("Chat abgeschickt?")},3000);
+setTimeout(function() {Logfile("mqtt Chat"); document.getElementById('Chat-Text').value=""; document.getElementById('Chat_abschicken').click(); Logfile("Chat abgeschickt?")},3000);
 /*
 var Logfile=document.getElementById("Logfile");
 function Logfile_append(text) {
