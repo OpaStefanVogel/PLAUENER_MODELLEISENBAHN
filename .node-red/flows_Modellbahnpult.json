@@ -55,6 +55,13 @@
         "label": "Flow 8"
     },
     {
+        "id": "39cb2d43.1c3402",
+        "type": "tab",
+        "label": "Flow 10 Einkaufsliste.html",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "e8139bd5.eb4a88",
         "type": "tab",
         "label": "Flow 9",
@@ -152,6 +159,20 @@
         "willTopic": "",
         "willQos": "0",
         "willPayload": ""
+    },
+    {
+        "id": "8f092777.1c40a8",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/gatttool",
+        "wholemsg": "false"
+    },
+    {
+        "id": "16182c6d.b7e7b4",
+        "type": "websocket-listener",
+        "z": "",
+        "path": "/ws/Einkaufsliste",
+        "wholemsg": "false"
     },
     {
         "id": "cf651286.ec5fa",
@@ -2071,5 +2092,237 @@
         "x": 595,
         "y": 672,
         "wires": []
+    },
+    {
+        "id": "52a95918.d4ce28",
+        "type": "exec",
+        "z": "70999eba.a8373",
+        "command": "sudo",
+        "addpay": false,
+        "append": "iw dev",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": true,
+        "name": "",
+        "x": 250,
+        "y": 60,
+        "wires": [
+            [
+                "77a6966.da10c68"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "98b5361b.93c838",
+        "type": "inject",
+        "z": "70999eba.a8373",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "52a95918.d4ce28"
+            ]
+        ]
+    },
+    {
+        "id": "77a6966.da10c68",
+        "type": "debug",
+        "z": "70999eba.a8373",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "x": 450,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "be42c579.d823a8",
+        "type": "exec",
+        "z": "70999eba.a8373",
+        "command": "wget ",
+        "addpay": false,
+        "append": "-O CAG-192 http://www.cvag.de/eza/mis/stops/station/CAG-192",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 350,
+        "y": 1060,
+        "wires": [
+            [
+                "b02d7748.d3c4a8"
+            ],
+            [
+                "b02d7748.d3c4a8"
+            ],
+            [
+                "b02d7748.d3c4a8"
+            ]
+        ]
+    },
+    {
+        "id": "2bad630c.b6615c",
+        "type": "inject",
+        "z": "70999eba.a8373",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 1060,
+        "wires": [
+            [
+                "be42c579.d823a8",
+                "c839fac7.a66fb8"
+            ]
+        ]
+    },
+    {
+        "id": "c839fac7.a66fb8",
+        "type": "http request",
+        "z": "70999eba.a8373",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://www.cvag.de/eza/mis/stops/station/CAG-192£",
+        "tls": "",
+        "x": 330,
+        "y": 1100,
+        "wires": [
+            [
+                "b02d7748.d3c4a8"
+            ]
+        ]
+    },
+    {
+        "id": "b02d7748.d3c4a8",
+        "type": "debug",
+        "z": "70999eba.a8373",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 550,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "905c5c9b.0ce5f",
+        "type": "daemon",
+        "z": "3b937630.ec819a",
+        "command": "gatttool",
+        "args": "-I",
+        "cr": true,
+        "redo": true,
+        "op": "string",
+        "name": "",
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "4fc0cc78.adb774"
+            ],
+            [
+                "4fc0cc78.adb774"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2c5d8871.d77088",
+        "type": "websocket in",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "server": "8f092777.1c40a8",
+        "client": "",
+        "x": 220,
+        "y": 380,
+        "wires": [
+            [
+                "905c5c9b.0ce5f"
+            ]
+        ]
+    },
+    {
+        "id": "4fc0cc78.adb774",
+        "type": "websocket out",
+        "z": "3b937630.ec819a",
+        "name": "",
+        "server": "8f092777.1c40a8",
+        "client": "",
+        "x": 630,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "61b82311.8f726c",
+        "type": "comment",
+        "z": "3b937630.ec819a",
+        "name": "gatttool",
+        "info": "",
+        "x": 50,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "60e88d09.2b9204",
+        "type": "websocket in",
+        "z": "39cb2d43.1c3402",
+        "name": "",
+        "server": "16182c6d.b7e7b4",
+        "client": "",
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "5ae0dc.8edb2f24"
+            ]
+        ]
+    },
+    {
+        "id": "1add1a0a.4b57d6",
+        "type": "websocket out",
+        "z": "39cb2d43.1c3402",
+        "name": "",
+        "server": "16182c6d.b7e7b4",
+        "client": "",
+        "x": 530,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5ae0dc.8edb2f24",
+        "type": "function",
+        "z": "39cb2d43.1c3402",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 60,
+        "wires": [
+            [
+                "1add1a0a.4b57d6"
+            ]
+        ]
     }
 ]
