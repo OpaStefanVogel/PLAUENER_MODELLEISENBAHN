@@ -2314,7 +2314,7 @@
         "type": "function",
         "z": "39cb2d43.1c3402",
         "name": "",
-        "func": "var EL=global.get(\"Einkaufsliste\")||[];\nvar NL=msg.payload;\nvar TL=Date.now();\nif (NL!=\"?\") EL.push([TL,NL]);\nwhile (EL.length>10) EL.shift();\nglobal.set(\"Einkaufsliste\",EL);\nmsg.payload=EL;\nreturn msg;",
+        "func": "var EL=global.get(\"Einkaufsliste\")||[];\nvar NL=msg.payload;\nvar TL=Date.now();\nif (NL!=\"?\") EL.push([TL,NL,msg._session.id]);\nwhile (EL.length>10) EL.shift();\nglobal.set(\"Einkaufsliste\",EL);\nmsg.payload=EL;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 350,
