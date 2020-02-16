@@ -12,6 +12,23 @@
     .Licht_aus {
       font-size: 200%
       }
+    .Taste_an {
+      background-color: yellow;
+      font-size:400%;
+      #background-color:dodgerblue; 
+      border-radius: 30px;
+      border-size:10px; 
+      padding-top:150px;
+      padding-bottom:150px;
+      }
+    .Taste_aus {
+      font-size:400%;
+      #background-color:dodgerblue; 
+      border-radius: 30px;
+      border-size:10px; 
+      padding-top:150px;
+      padding-bottom:150px;
+      }
     .Test {
       background-color: red;
       font-size: 150%
@@ -299,8 +316,17 @@ var top="Testheini78x11/psswd_ha72z";
 //mosquitto_sub -h test.mosquitto.org -t Testheini78x11/psswd_ha72z -v
 
 alert(mosq2.connect);*/
+var button77=1;
 var button78=1;
   </script>
+<button onclick="var div77=document.getElementById('große_Tasten'); if (button77==0) { div77.setAttribute('style','display:none'); button77=1; } else { div77.removeAttribute('style'); button77=0}">große Tasten</button>
+<div id="große_Tasten" style="display:none">
+<button class="Taste_an" onclick='websocket_brett_gpio.send("0:20");Logfile("TABLET Licht ein")' style="position:fixed; top:50px; left:100px">Licht ein</button>
+<button class="Taste_aus" onclick='websocket_brett_gpio.send("0:0");Logfile("TABLET Licht aus")' style="position:fixed; top:50px; left:400px">aus</button>
+Lok: 
+<button class="Taste_an" onclick='websocket_brett_gpio.send("1:1");Logfile("Lok ein")' style="position:fixed; top:50px; left:550px">Lok ein</button>
+<button class="Taste_aus" onclick='websocket_brett_gpio.send("1:0");Logfile("Lok aus")' style="position:fixed; top:50px; left:800px">aus</button>
+</div>
 <button onclick="var div78=document.getElementById('Verbindung_ueber_Websocket'); if (button78==0) { div78.setAttribute('style','display:none'); button78=1; } else { div78.removeAttribute('style'); button78=0}">mehr (lokale Verbindung über Websocket ws://192.168.2.103:1880):</button>
 <div id="Verbindung_ueber_Websocket" style="display:none">
 Licht Waldcafe 
